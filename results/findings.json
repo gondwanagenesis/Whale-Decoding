@@ -1,0 +1,35 @@
+{
+  "dataset": {
+    "n_codas": 8710,
+    "n_coda_types": 34,
+    "n_social_units": 13,
+    "date_range": [
+      "2005-01-15 00:00:00",
+      "2016-05-12 00:00:00"
+    ]
+  },
+  "information_capacity": {
+    "n_distinguishable_types": 34,
+    "entropy_bits": 3.260293970361428,
+    "max_entropy_bits": 5.087462841250339,
+    "efficiency": 0.6408487043730721
+  },
+  "clustering": {
+    "n_clusters": 34,
+    "silhouette": 0.36339843938181393,
+    "ari": 0.48486784766277313
+  },
+  "turn_taking": {
+    "n_turn_switches": 2239,
+    "mean_gap_seconds": 2.3212903296114513,
+    "median_gap_seconds": 0.5191028000008373,
+    "std_gap_seconds": 24.239844187827156,
+    "overlap_rate": 0.4055381866904868,
+    "min_gap": -1.9654719999989538,
+    "max_gap": 763.0356136999981
+  },
+  "coordination": {
+    "mean_tempo_convergence": 0.5529664843519306,
+    "click_count_match_rate": 0.47441332675344045
+  }
+}

@@ -1,0 +1,57 @@
+{
+  "entropy_rates": {
+    "H0_unigram": 3.2361816960492296,
+    "H1_bigram": 2.1209667671785977,
+    "H2_trigram": 1.36432023264329,
+    "H3_quadgram": 0.9525987431583364
+  },
+  "mutual_info": {
+    "mutual_information_bits": 0.8685043536867623,
+    "H_response": 3.0963954502251645,
+    "H_response_given_prompt": 2.2278910965384022,
+    "H_prompt": 3.0754519210209685,
+    "normalized_MI": 0.2823989371287072,
+    "n_pairs": 2239
+  },
+  "channel_capacity": {
+    "empirical_MI_bits": 0.8685043536867623,
+    "alphabet_size": 78,
+    "max_possible_entropy": 6.285402218862249,
+    "capacity_utilization": 0.13817800730085567
+  },
+  "predictability": {
+    "H_next_given_prev_same_whale": 1.0885140381963925,
+    "H_next_given_prev_cross_whale": 2.2278910965384022,
+    "n_same_whale": 1382,
+    "n_cross_whale": 2239,
+    "predictability_ratio": 0.4885849402099039
+  },
+  "zipf": {
+    "zipf_exponent": 1.7159703516490419,
+    "r_squared": 0.9645775129557514,
+    "p_value": 6.923661174451052e-57,
+    "n_types": 78,
+    "top_5": [
+      [
+        "5-vslow",
+        1485
+      ],
+      [
+        "5-slow",
+        759
+      ],
+      [
+        "5-fast",
+        520
+      ],
+      [
+        "4-vslow",
+        200
+      ],
+      [
+        "5-medium",
+        177
+      ]
+    ]
+  }
+}

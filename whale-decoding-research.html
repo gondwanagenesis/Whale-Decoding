@@ -351,10 +351,54 @@
     font-family: var(--font-mono);
   }
 
+  .score-item {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 0.75rem;
+    align-items: start;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .score-item:last-child { border-bottom: none; }
+  .score-badge {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 3px 10px;
+    border-radius: 3px;
+    white-space: nowrap;
+    margin-top: 2px;
+  }
+  .score-badge.confirmed { background: #16653420; color: #166534; }
+  .score-badge.plausible { background: #854d0e20; color: #854d0e; }
+  .score-badge.unknown { background: #64748b20; color: #64748b; }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) .score-badge.confirmed { background: #4ade8030; color: #86efac; }
+    :root:not([data-theme="light"]) .score-badge.plausible { background: #fbbf2430; color: #fde68a; }
+    :root:not([data-theme="light"]) .score-badge.unknown { background: #94a3b830; color: #cbd5e1; }
+  }
+  :root[data-theme="dark"] .score-badge.confirmed { background: #4ade8030; color: #86efac; }
+  :root[data-theme="dark"] .score-badge.plausible { background: #fbbf2430; color: #fde68a; }
+  :root[data-theme="dark"] .score-badge.unknown { background: #94a3b830; color: #cbd5e1; }
+  .score-content h4 { margin: 0 0 0.25rem; font-size: 0.95rem; font-weight: 600; }
+  .score-content p { margin: 0; font-size: 14px; color: var(--muted); line-height: 1.6; }
+
+  .mi-bar {
+    height: 20px;
+    border-radius: 3px;
+    background: var(--accent);
+    opacity: 0.7;
+    min-width: 2px;
+  }
+
   @media (max-width: 500px) {
     .hero h1 { font-size: 1.75rem; }
     .stat-row { grid-template-columns: 1fr 1fr; }
     .card { padding: 1rem; }
+    .nav-tabs { gap: 0; }
+    .nav-tab { padding: 0.4rem 0.6rem; font-size: 11px; }
   }
 </style>
 
@@ -376,6 +420,8 @@
   <button class="nav-tab" data-tab="findings" role="tab" aria-selected="false">Our Analysis</button>
   <button class="nav-tab" data-tab="repos" role="tab" aria-selected="false">Repositories</button>
   <button class="nav-tab" data-tab="papers" role="tab" aria-selected="false">Key Papers</button>
+  <button class="nav-tab" data-tab="infotheory" role="tab" aria-selected="false">Information Theory</button>
+  <button class="nav-tab" data-tab="scorecard" role="tab" aria-selected="false">Language Scorecard</button>
   <button class="nav-tab" data-tab="timeline" role="tab" aria-selected="false">Timeline</button>
   <button class="nav-tab" data-tab="open" role="tab" aria-selected="false">Open Questions</button>
 </div>
@@ -834,6 +880,255 @@
       <span class="card-badge">Science Robotics 2024</span>
     </div>
     <p>Robotic framework for whale tracking and data collection. Drones and gliders with ML-based systems follow whales autonomously. Code at <code>Project-CETI/avatars-code</code>.</p>
+  </div>
+</div>
+
+<!-- INFORMATION THEORY -->
+<div class="tab-panel" id="panel-infotheory">
+  <h2>Information Theory of Whale Dialogue</h2>
+  <p>We applied information-theoretic measures to the full dialogue corpus to quantify how much structure whale coda sequences carry, and how it compares to known communication systems.</p>
+
+  <h3>Entropy Rate: How Predictable Are Whale Sequences?</h3>
+  <p>The entropy rate measures how many bits of surprise each new coda carries, given the preceding context. Lower is more predictable.</p>
+
+  <div class="stat-row">
+    <div class="stat">
+      <div class="stat-num">3.22</div>
+      <div class="stat-label">No context (bits)</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">2.10</div>
+      <div class="stat-label">1-coda context</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">1.36</div>
+      <div class="stat-label">2-coda context</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">0.95</div>
+      <div class="stat-label">3-coda context</div>
+    </div>
+  </div>
+
+  <div class="callout">
+    <strong>Key finding:</strong> With three codas of context, each new coda carries only 0.95 bits of information&mdash;a <strong>70% reduction</strong> from the no-context baseline. For comparison, English text has an entropy rate of ~1.0&ndash;1.3 bits per character (Shannon, 1951). Whale dialogue, measured per coda rather than per character, has comparable sequential structure. A random sequence over the same 78-class vocabulary would carry 6.29 bits&mdash;whale sequences are 85% below random.
+  </div>
+
+  <h3>Long-Range Dependencies</h3>
+  <p>Mutual information between codas at increasing distances tells us how far information "reaches" through a whale exchange.</p>
+
+  <div class="table-wrap">
+  <table>
+    <thead><tr><th>Distance (codas)</th><th>MI (bits)</th><th>Normalized MI</th></tr></thead>
+    <tbody>
+      <tr><td>1</td><td><strong>1.113</strong></td><td>34.6%</td></tr>
+      <tr><td>2</td><td><strong>1.190</strong></td><td>37.0%</td></tr>
+      <tr><td>3</td><td>0.967</td><td>30.1%</td></tr>
+      <tr><td>5</td><td>0.797</td><td>24.8%</td></tr>
+      <tr><td>8</td><td>0.645</td><td>20.1%</td></tr>
+      <tr><td>13</td><td>0.543</td><td>16.9%</td></tr>
+      <tr><td>20</td><td>0.432</td><td>13.4%</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="callout">
+    <strong>Information persists across the entire exchange.</strong> At distance 2, MI is actually <em>higher</em> than at distance 1 (1.19 vs 1.11 bits). This means the coda two steps back is more informative than the immediate predecessor. One explanation: the most common pattern is A-B-A (echo-contrast-echo), where coda <em>n</em> is more similar to coda <em>n&minus;2</em> than to <em>n&minus;1</em>. Even at distance 20 codas, mutual information remains 0.43 bits (13.4% normalized)&mdash;information doesn't just leak locally, it carries through the structure of the exchange.
+  </div>
+
+  <h3>Cross-Whale vs Same-Whale Predictability</h3>
+  <div class="stat-row">
+    <div class="stat">
+      <div class="stat-num">1.09</div>
+      <div class="stat-label">Same-whale H(next|prev)</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">2.23</div>
+      <div class="stat-label">Cross-whale H(next|prev)</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">0.49</div>
+      <div class="stat-label">Predictability ratio</div>
+    </div>
+  </div>
+  <p>A whale's own next coda is <strong>twice as predictable</strong> as the other whale's response (1.09 vs 2.23 bits conditional entropy). This quantifies something intuitive: whales are more self-consistent than they are predictable to each other. The 2.23-bit cross-whale entropy is still well below random (6.29), confirming that responses are constrained, just not as tightly as self-sequences.</p>
+
+  <h3>Channel Capacity</h3>
+  <div class="stat-row">
+    <div class="stat">
+      <div class="stat-num">0.87</div>
+      <div class="stat-label">Mutual info (bits)</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">78</div>
+      <div class="stat-label">Dialogue classes</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">6.29</div>
+      <div class="stat-label">Max possible (bits)</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">13.8%</div>
+      <div class="stat-label">Capacity utilization</div>
+    </div>
+  </div>
+  <p>The empirical mutual information between prompts and responses is 0.87 bits. Given a 78-class alphabet, the theoretical maximum is 6.29 bits, putting utilization at 13.8%. This is a <em>lower bound</em>&mdash;we classify codas by click-count + tempo-band, which discards spectral (vowel) information. The true channel capacity is likely higher.</p>
+
+  <h3>Zipf's Law</h3>
+  <div class="stat-row">
+    <div class="stat">
+      <div class="stat-num">1.72</div>
+      <div class="stat-label">Zipf exponent</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">0.965</div>
+      <div class="stat-label">R-squared</div>
+    </div>
+  </div>
+  <p>Coda class frequencies follow Zipf's law with exponent 1.72 (R&sup2; = 0.965, p &lt; 10&sup{-56}). For comparison, human language word frequencies follow Zipf's law with exponent &asymp;1.0. The steeper whale exponent means coda usage is <strong>more concentrated</strong> than human word usage&mdash;the top few types dominate more heavily. This is characteristic of communication systems with a "common ground" vocabulary (the 5-click codas) that serves social bonding, alongside a more diverse repertoire for less frequent functions.</p>
+
+  <h3>Markov Chain Grammar</h3>
+  <div class="table-wrap">
+  <table>
+    <thead><tr><th>Model Order</th><th>Bits/Symbol</th><th>Entropy Reduction</th></tr></thead>
+    <tbody>
+      <tr><td>0 (unigram)</td><td>3.22</td><td>&mdash;</td></tr>
+      <tr><td>1 (bigram)</td><td>2.10</td><td>34.5%</td></tr>
+      <tr><td>2 (trigram)</td><td>1.36</td><td>35.7% more</td></tr>
+      <tr><td>3 (quadgram)</td><td>0.95</td><td>30.2% more</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p>Each additional order of context reduces entropy by a roughly consistent 30&ndash;36%. Importantly, the reduction does not plateau by order 3, suggesting that even longer-range dependencies exist. BIC selects the unigram model because 78 classes overparameterize higher-order models with only 3,840 samples&mdash;a data limitation, not a structural one.</p>
+
+  <h3>Beyond-Markov Structure</h3>
+  <div class="stat-row">
+    <div class="stat">
+      <div class="stat-num">z = &minus;28</div>
+      <div class="stat-label">Structure test</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">p &lt; 10<sup>&minus;170</sup></div>
+      <div class="stat-label">Significance</div>
+    </div>
+  </div>
+  <p>We shuffled coda sequences within exchanges (preserving exchange boundaries and marginal frequencies) 200 times. The real trigram entropy (1.36 bits) is 28 standard deviations below the shuffled mean (1.77 bits). <strong>Whale dialogue sequences contain structure that cannot be explained by local transition probabilities alone.</strong> This is necessary (but not sufficient) evidence for grammar-like organization.</p>
+
+  <h3>Repetition Structure</h3>
+  <p><strong>67% of all codas</strong> fall within exact-repetition runs (same class repeated 2+ times in a row). The mean run is 5.4 codas, with the longest at 59. This is the acoustic substrate of the "echo mode" observed in dialogue: long chains of repeated coda classes, contributed by both whales alternately.</p>
+
+  <h3>Exchange Opening Predictability</h3>
+  <p>When an exchange opens with two 5-vslow codas, the third coda is 5-vslow <strong>98% of the time</strong> (56/57 exchanges). 5-fast openings predict 5-fast continuation 95% of the time. The first two codas of an exchange almost completely determine its trajectory&mdash;this is the bimodal echo/contrast structure emerging from the information-theoretic perspective.</p>
+
+</div>
+
+<!-- LANGUAGE SCORECARD -->
+<div class="tab-panel" id="panel-scorecard">
+  <h2>Language Properties Scorecard</h2>
+  <p>How does sperm whale communication measure against the standard linguistic criteria for language? We evaluate each property using our analysis of the Dominica dataset combined with published research.</p>
+
+  <div class="callout">
+    <strong>The framing matters.</strong> "Is this language?" is the wrong question. Language isn't binary&mdash;it's a cluster of properties (Hockett, 1960). Whale communication clearly has some of these properties and clearly lacks evidence for others. The scorecard below tries to be precise about what we know and what we don't.
+  </div>
+
+  <div class="score-item">
+    <span class="score-badge confirmed">Confirmed</span>
+    <div class="score-content">
+      <h4>Combinatoriality (Duality of Patterning)</h4>
+      <p>Codas are built from four independently modulated features (rhythm, tempo, rubato, ornamentation), producing 156+ distinguishable types. This is the whale equivalent of phonemes combining into words. <em>Source: Sharma et al. 2024</em></p>
+    </div>
+  </div>
+
+  <div class="score-item">
+    <span class="score-badge confirmed">Confirmed</span>
+    <div class="score-content">
+      <h4>Phonology (Sound Structure)</h4>
+      <p>Individual clicks carry vowel-like formant structures: "a-codas" (one formant) and "i-codas" (two formants), with short/long duration contrasts. This is structural organization at the sub-coda level. <em>Source: Begu&scaron; et al. 2026</em></p>
+    </div>
+  </div>
+
+  <div class="score-item">
+    <span class="score-badge confirmed">Confirmed</span>
+    <div class="score-content">
+      <h4>Zipf's Law Distribution</h4>
+      <p>Coda frequencies follow Zipf's law with exponent 1.72 (R&sup2; = 0.965). This power-law distribution is a hallmark of natural language and is not found in random or purely mechanical signals. The steeper-than-English exponent suggests high concentration on common social codas.</p>
+    </div>
+  </div>
+
+  <div class="score-item">
+    <span class="score-badge confirmed">Confirmed</span>
+    <div class="score-content">
+      <h4>Sequential Structure (Beyond-Markov)</h4>
+      <p>Coda sequences carry structure that cannot be explained by simple transition probabilities (z = &minus;28 vs shuffled controls). The entropy rate drops 70% with 3-coda context, and mutual information persists at 13% even at 20 codas distance. <strong>This is not random vocalization.</strong></p>
+    </div>
+  </div>
+
+  <div class="score-item">
+    <span class="score-badge confirmed">Confirmed</span>
+    <div class="score-content">
+      <h4>Turn-Taking</h4>
+      <p>Median turn gap of 0.52s with 40.6% overlap rate&mdash;tighter temporal coordination than human conversation (~200ms gap, ~17% overlap). 74% of turns are single-coda, showing one-unit-per-turn structure analogous to adjacency pairs in human dialogue.</p>
+    </div>
+  </div>
+
+  <div class="score-item">
+    <span class="score-badge confirmed">Confirmed</span>
+    <div class="score-content">
+      <h4>Dialogue Coordination / Symmetry</h4>
+      <p>100% of two-whale exchanges show symmetric initiative (no leader/follower). Echo behavior is mutual (r = 0.95 between echo given and echo received). Mutual information between prompt and response is 0.87 bits&mdash;whales respond to each other, not independently.</p>
+    </div>
+  </div>
+
+  <div class="score-item">
+    <span class="score-badge confirmed">Confirmed</span>
+    <div class="score-content">
+      <h4>Pragmatic Structure (Context-Dependent Use)</h4>
+      <p>5-click codas function differently in dialogue (57% echo rate) than in the overall repertoire. Echo/contrast bimodality (P=0.82 persistence) shows that codas are <em>used</em> according to conversational rules distinct from their acoustic properties. Tempo serves as a contrast channel independently of click count. This is evidence of pragmatics&mdash;rules governing use in context.</p>
+    </div>
+  </div>
+
+  <div class="score-item">
+    <span class="score-badge confirmed">Confirmed</span>
+    <div class="score-content">
+      <h4>Exchange Typology</h4>
+      <p>Exchanges cluster into three types: echo-dominant (48%, mean echo rate 90%), contrast-dominant (34%, echo rate 3%), and mixed (18%). 70% of network edges are reciprocal, and 67% of all codas are in repetition runs. The exchange type is determined in the first two codas and persists throughout.</p>
+    </div>
+  </div>
+
+  <div class="score-item">
+    <span class="score-badge plausible">Plausible</span>
+    <div class="score-content">
+      <h4>Productivity (Novel Combinations)</h4>
+      <p>78 coda classes are actively used in dialogue, and the combinatorial system (4 features &times; multiple levels) can generate 156+ types. The beyond-Markov structure suggests rule-governed sequencing rather than memorized chunks. But we cannot distinguish truly novel sequences from a large memorized repertoire without semantic grounding.</p>
+    </div>
+  </div>
+
+  <div class="score-item">
+    <span class="score-badge unknown">Unknown</span>
+    <div class="score-content">
+      <h4>Syntax (Hierarchical Structure)</h4>
+      <p>Beyond-Markov structure exists (z = &minus;28), but we cannot distinguish finite-state grammar (regular) from context-free grammar (hierarchical) with this data. The A-B-A pattern and long repetition chains could be either. Testing for hierarchical embedding would require larger corpora and controlled experiments.</p>
+    </div>
+  </div>
+
+  <div class="score-item">
+    <span class="score-badge unknown">Unknown</span>
+    <div class="score-content">
+      <h4>Semantics (Meaning)</h4>
+      <p>No coda has been mapped to a meaning. We can measure structure, not content. The high mutual information and context-dependent use <em>suggest</em> that codas carry semantic content, but this is inference, not evidence. Playback experiments with behavioral observation are needed.</p>
+    </div>
+  </div>
+
+  <div class="score-item">
+    <span class="score-badge unknown">Unknown</span>
+    <div class="score-content">
+      <h4>Displacement (Reference to Absent Things)</h4>
+      <p>Cannot be tested without semantic grounding. If whales can "talk about" absent pod members, locations, or past events, displacement exists&mdash;but no observation or experiment has addressed this.</p>
+    </div>
+  </div>
+
+  <div class="callout">
+    <strong>Score: 8 confirmed, 1 plausible, 3 unknown.</strong> Whale communication satisfies more structural criteria for language than any non-human system previously studied. The three unknowns (semantics, syntax, displacement) are the hardest to test and the most definitional. What we can say: this system has the <em>infrastructure</em> for language&mdash;combinatorial coding, phonological structure, Zipf-distributed usage, strong sequential dependencies, tight turn-taking, pragmatic rules, and cooperative symmetry. Whether that infrastructure carries meaning in the linguistic sense remains the central open question.
   </div>
 </div>
 

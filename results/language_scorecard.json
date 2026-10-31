@@ -1,0 +1,51 @@
+{
+  "combinatoriality": {
+    "status": "confirmed",
+    "source": "Sharma et al. 2024"
+  },
+  "zipf_law": {
+    "status": "confirmed",
+    "exponent": 1.72,
+    "r_squared": 0.965
+  },
+  "sequential_structure": {
+    "status": "confirmed",
+    "z_score": -28.0,
+    "entropy_reduction": 0.7
+  },
+  "mutual_information": {
+    "status": "confirmed",
+    "bits": 0.87,
+    "normalized": 0.28
+  },
+  "turn_taking": {
+    "status": "confirmed",
+    "median_gap": 0.52,
+    "overlap": 0.406
+  },
+  "symmetry": {
+    "status": "confirmed",
+    "asymmetric_exchanges": 0
+  },
+  "pragmatic_structure": {
+    "status": "confirmed",
+    "bimodal_echo": true
+  },
+  "phonology": {
+    "status": "confirmed",
+    "source": "Begus et al. 2026"
+  },
+  "semantics": {
+    "status": "unknown"
+  },
+  "syntax": {
+    "status": "unknown",
+    "note": "beyond-Markov structure exists"
+  },
+  "displacement": {
+    "status": "unknown"
+  },
+  "productivity": {
+    "status": "plausible"
+  }
+}

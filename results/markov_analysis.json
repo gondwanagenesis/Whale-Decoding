@@ -1,0 +1,45 @@
+{
+  "markov_models": [
+    {
+      "order": 0,
+      "log_likelihood_bits": -12335.335994939194,
+      "n_params": 76,
+      "BIC": 17727.47369930067,
+      "AIC": 17252.40673230342,
+      "bits_per_symbol": 3.219873660908169
+    },
+    {
+      "order": 1,
+      "log_likelihood_bits": -8059.5308221970145,
+      "n_params": 5852,
+      "BIC": 59455.510852969965,
+      "AIC": 22876.882132083676,
+      "bits_per_symbol": 2.1043161415658003
+    },
+    {
+      "order": 2,
+      "log_likelihood_bits": -5195.799278330094,
+      "n_params": 34428,
+      "BIC": 291246.2652225201,
+      "AIC": 76058.9072410598,
+      "bits_per_symbol": 1.3569598533115943
+    },
+    {
+      "order": 3,
+      "log_likelihood_bits": -3637.5516315694904,
+      "n_params": 69920,
+      "BIC": 581889.5521750206,
+      "AIC": 144882.71731512723,
+      "bits_per_symbol": 0.9502485975886861
+    }
+  ],
+  "best_order_bic": 0,
+  "beyond_markov": {
+    "real_trigram_entropy": 1.3569598533115934,
+    "shuffled_mean": 1.7715883793354918,
+    "shuffled_std": 0.014817389232526778,
+    "z_score": -27.98256288724034,
+    "p_value": 0.0,
+    "has_beyond_markov_structure": "True"
+  }
+}

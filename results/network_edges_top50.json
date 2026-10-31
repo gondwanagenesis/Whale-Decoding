@@ -1,0 +1,252 @@
+[
+  {
+    "source": "5-vslow",
+    "target": "5-vslow",
+    "weight": 658
+  },
+  {
+    "source": "5-slow",
+    "target": "5-slow",
+    "weight": 180
+  },
+  {
+    "source": "5-fast",
+    "target": "5-fast",
+    "weight": 132
+  },
+  {
+    "source": "5-slow",
+    "target": "5-vslow",
+    "weight": 100
+  },
+  {
+    "source": "5-vslow",
+    "target": "5-slow",
+    "weight": 95
+  },
+  {
+    "source": "4-vslow",
+    "target": "5-slow",
+    "weight": 64
+  },
+  {
+    "source": "5-slow",
+    "target": "4-vslow",
+    "weight": 59
+  },
+  {
+    "source": "5-fast",
+    "target": "5-slow",
+    "weight": 47
+  },
+  {
+    "source": "5-slow",
+    "target": "5-fast",
+    "weight": 45
+  },
+  {
+    "source": "5-vslow",
+    "target": "4-vslow",
+    "weight": 38
+  },
+  {
+    "source": "5-medium",
+    "target": "5-fast",
+    "weight": 34
+  },
+  {
+    "source": "5-medium",
+    "target": "5-medium",
+    "weight": 28
+  },
+  {
+    "source": "4-vslow",
+    "target": "5-vslow",
+    "weight": 27
+  },
+  {
+    "source": "5-fast",
+    "target": "5-medium",
+    "weight": 26
+  },
+  {
+    "source": "5-slow",
+    "target": "5-medium",
+    "weight": 22
+  },
+  {
+    "source": "5-medium",
+    "target": "5-slow",
+    "weight": 22
+  },
+  {
+    "source": "4-crawl",
+    "target": "5-vslow",
+    "weight": 14
+  },
+  {
+    "source": "5-fast",
+    "target": "3-slow",
+    "weight": 12
+  },
+  {
+    "source": "5-slow",
+    "target": "4-slow",
+    "weight": 12
+  },
+  {
+    "source": "5-vslow",
+    "target": "7-slow",
+    "weight": 11
+  },
+  {
+    "source": "7-slow",
+    "target": "5-vslow",
+    "weight": 11
+  },
+  {
+    "source": "3-slow",
+    "target": "5-fast",
+    "weight": 10
+  },
+  {
+    "source": "5-slow",
+    "target": "6-slow",
+    "weight": 10
+  },
+  {
+    "source": "6-slow",
+    "target": "5-vslow",
+    "weight": 10
+  },
+  {
+    "source": "4-slow",
+    "target": "5-slow",
+    "weight": 10
+  },
+  {
+    "source": "5-vslow",
+    "target": "6-vslow",
+    "weight": 10
+  },
+  {
+    "source": "3-medium",
+    "target": "5-fast",
+    "weight": 9
+  },
+  {
+    "source": "5-vslow",
+    "target": "6-slow",
+    "weight": 9
+  },
+  {
+    "source": "5-vslow",
+    "target": "4-crawl",
+    "weight": 9
+  },
+  {
+    "source": "5-fast",
+    "target": "3-medium",
+    "weight": 8
+  },
+  {
+    "source": "5-slow",
+    "target": "8-slow",
+    "weight": 8
+  },
+  {
+    "source": "20-vfast",
+    "target": "5-slow",
+    "weight": 7
+  },
+  {
+    "source": "8-slow",
+    "target": "5-vslow",
+    "weight": 7
+  },
+  {
+    "source": "8-slow",
+    "target": "5-slow",
+    "weight": 7
+  },
+  {
+    "source": "5-vslow",
+    "target": "9-slow",
+    "weight": 6
+  },
+  {
+    "source": "6-slow",
+    "target": "5-slow",
+    "weight": 6
+  },
+  {
+    "source": "5-slow",
+    "target": "7-slow",
+    "weight": 6
+  },
+  {
+    "source": "5-medium",
+    "target": "5-vslow",
+    "weight": 6
+  },
+  {
+    "source": "5-fast",
+    "target": "6-fast",
+    "weight": 6
+  },
+  {
+    "source": "6-vslow",
+    "target": "5-vslow",
+    "weight": 6
+  },
+  {
+    "source": "4-vslow",
+    "target": "18-fast",
+    "weight": 5
+  },
+  {
+    "source": "4-vslow",
+    "target": "6-slow",
+    "weight": 5
+  },
+  {
+    "source": "6-slow",
+    "target": "4-vslow",
+    "weight": 5
+  },
+  {
+    "source": "5-slow",
+    "target": "20-vfast",
+    "weight": 5
+  },
+  {
+    "source": "5-fast",
+    "target": "4-vslow",
+    "weight": 5
+  },
+  {
+    "source": "4-vslow",
+    "target": "5-fast",
+    "weight": 5
+  },
+  {
+    "source": "9-vfast",
+    "target": "5-fast",
+    "weight": 5
+  },
+  {
+    "source": "5-vslow",
+    "target": "7-vslow",
+    "weight": 5
+  },
+  {
+    "source": "7-vslow",
+    "target": "5-vslow",
+    "weight": 5
+  },
+  {
+    "source": "5-vslow",
+    "target": "8-slow",
+    "weight": 5
+  }
+]
