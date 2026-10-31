@@ -1020,6 +1020,54 @@
   <h3>Exchange Opening Predictability</h3>
   <p>When an exchange opens with two 5-vslow codas, the third coda is 5-vslow <strong>98% of the time</strong> (56/57 exchanges). 5-fast openings predict 5-fast continuation 95% of the time. The first two codas of an exchange almost completely determine its trajectory&mdash;this is the bimodal echo/contrast structure emerging from the information-theoretic perspective.</p>
 
+  <h2>Functional Differentiation</h2>
+  <p>Not all codas serve the same conversational role. By tracking where each coda class appears&mdash;as an opener, an echo, a contrast, or a continuation&mdash;we find four distinct functional categories.</p>
+
+  <h3>Coda Role Profiles</h3>
+  <div class="table-wrap">
+  <table>
+    <thead><tr><th>Coda Class</th><th>Opener</th><th>Echo</th><th>Contrast</th><th>Continuation</th><th>Role</th></tr></thead>
+    <tbody>
+      <tr><td><strong>5-vslow</strong></td><td>4.7%</td><td><strong>44.3%</strong></td><td>14.9%</td><td>36.1%</td><td style="color:var(--accent)">Echo / social bonding</td></tr>
+      <tr><td><strong>5-fast</strong></td><td>5.6%</td><td>25.4%</td><td>24.0%</td><td><strong>45.0%</strong></td><td style="color:var(--accent)">Sustained exchange</td></tr>
+      <tr><td><strong>5-medium</strong></td><td><strong>12.4%</strong></td><td>15.8%</td><td>35.0%</td><td>36.7%</td><td style="color:var(--accent)">Opener / greeting</td></tr>
+      <tr><td><strong>8-vfast</strong></td><td><strong>22.4%</strong></td><td>2.0%</td><td>24.5%</td><td>51.0%</td><td style="color:var(--accent)">Opener / attention signal</td></tr>
+      <tr><td><strong>9-vfast</strong></td><td><strong>25.0%</strong></td><td>5.6%</td><td>16.7%</td><td>52.8%</td><td style="color:var(--accent)">Opener / attention signal</td></tr>
+      <tr><td><strong>4-vslow</strong></td><td>1.5%</td><td>1.0%</td><td><strong>71.5%</strong></td><td>26.0%</td><td style="color:var(--accent)">Contrast / topic shift</td></tr>
+      <tr><td><strong>4-slow</strong></td><td>4.5%</td><td>4.5%</td><td><strong>86.4%</strong></td><td>4.5%</td><td style="color:var(--accent)">Pure contrast signal</td></tr>
+      <tr><td><strong>7-slow</strong></td><td>7.9%</td><td>0%</td><td><strong>65.8%</strong></td><td>26.3%</td><td style="color:var(--accent)">Contrast (closing signal)</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="callout">
+    <strong>Four functional categories emerge:</strong><br>
+    <strong>1. Echo/bonding codas</strong> (5-vslow): 75% self-transition rate, the "yeah" of whale conversation&mdash;produced to mirror the other whale.<br>
+    <strong>2. Opener/attention codas</strong> (8-vfast, 9-vfast, 5-medium): 3&ndash;4x overrepresented in exchange openings, the "hello" that initiates contact.<br>
+    <strong>3. Contrast/topic-shift codas</strong> (4-vslow, 4-slow, 6-slow): 65&ndash;86% contrast usage, essentially never echoed. 4-vslow acts as a "redirect"&mdash;when produced, the response is 5-slow 45% of the time, pulling the exchange back to 5-click territory.<br>
+    <strong>4. Closing signals</strong> (7-slow, 7-fast): 4&ndash;5x overrepresented as the final coda in exchanges.
+  </div>
+
+  <h3>Vocabulary in Dialogue</h3>
+  <div class="stat-row">
+    <div class="stat">
+      <div class="stat-num">2.2</div>
+      <div class="stat-label">Types per whale/exchange</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">0.45</div>
+      <div class="stat-label">Mean Jaccard overlap</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">31%</div>
+      <div class="stat-label">High-overlap exchanges</div>
+    </div>
+  </div>
+  <p>In any given exchange, each whale uses only <strong>2.2 coda types on average</strong>. The Jaccard overlap between the two whales' vocabularies is 0.45&mdash;they share about half their in-conversation repertoire. This is a highly focused communication pattern: whales select a tiny subset of their full repertoire (30+ types) for each interaction, and converge on shared types within it.</p>
+
+  <h3>Seasonal Patterns</h3>
+  <p>Recording spans January&ndash;June (the breeding season off Dominica). Repertoire diversity peaks in February&ndash;April (3.0&ndash;3.3 bits entropy across 25&ndash;35 types) and drops in May&ndash;June (1.7&ndash;1.8 bits, 19&ndash;21 types). This seasonal shift in communicative diversity may reflect changing social contexts as breeding season progresses.</p>
+
 </div>
 
 <!-- LANGUAGE SCORECARD -->
@@ -1251,45 +1299,71 @@
     <p>Should researchers play back synthetic codas to wild whales? Playback experiments are seen as a necessary next step for validating meaning, but could also disturb the animals. Commentators have also flagged concerns about tech company funding and potential exploitation of findings.</p>
   </div>
 
-  <h2>Build-On-Others Opportunities</h2>
+  <h2>What Our Analysis Narrows Down</h2>
 
   <div class="callout">
-    <strong>For someone entering this field.</strong> The most accessible entry points for building on existing work:
+    <strong>Based on our information-theoretic and dialogue analysis, we can now be more specific about what's known and what's not.</strong>
   </div>
 
   <div class="card">
     <div class="card-header">
-      <span class="card-title">Behavioral annotation layer</span>
+      <span class="card-title">The semantic grounding problem is now specific</span>
+      <span class="card-badge gold">narrowed</span>
     </div>
-    <p>The biggest gap: codas exist in ML-ready form, but behavioral context (what the whales were doing) is not systematically paired with acoustic data. Building a coda-to-behavior annotation pipeline on top of CETI's <code>data-ingest</code> would be high-impact.</p>
+    <p>We've identified four functional coda categories (echo, opener, contrast, closer) from positional statistics alone. Behavioral annotation doesn't need to start from scratch&mdash;it can target these categories specifically. If 4-vslow really is a "topic shift" and 8-vfast is an "attention getter," playback experiments can test those hypotheses directly.</p>
   </div>
 
   <div class="card">
     <div class="card-header">
-      <span class="card-title">Cross-population comparison</span>
+      <span class="card-title">The syntax question has a testable form</span>
+      <span class="card-badge gold">narrowed</span>
     </div>
-    <p>Apply <code>sw-combinatoriality</code> methods to recordings from non-Caribbean whale populations. This tests whether the 156-coda alphabet and the four-feature structure are universal or dialect-specific.</p>
+    <p>We've shown beyond-Markov structure (z = &minus;28) but can't distinguish finite-state from context-free grammar. The specific test: do whale exchanges contain <strong>center-embedding</strong> (A-B-A where A and B can themselves be structured)? Our data shows A-B-A patterns, but at the coda-class level, not at a structural level. Larger corpora with spectral features (vowel data) could resolve this.</p>
   </div>
 
   <div class="card">
     <div class="card-header">
-      <span class="card-title">Probe WhAM's latent space</span>
+      <span class="card-title">The channel capacity is a lower bound</span>
+      <span class="card-badge gold">narrowed</span>
     </div>
-    <p>WhAM's learned representations are strong for classification despite generative training. Probing these representations with behavioral labels, social-unit labels, or environmental context could reveal functional clustering that raw acoustics don't show.</p>
+    <p>Our 0.87-bit MI between prompt and response classifies codas only by click-count + tempo-band, discarding spectral (vowel) information. The 2026 vowel paper shows that spectral features carry independent information. True channel capacity is higher, and integrating vowel features into dialogue analysis is the most direct next step for this dataset.</p>
+  </div>
+
+  <h2>Build-On-Others Opportunities</h2>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="card-title">Behavioral annotation (targeted)</span>
+    </div>
+    <p>Pair our four functional categories with behavioral observation. Specifically: do "opener codas" (8-vfast, 9-vfast) correlate with approach behavior? Do "contrast codas" (4-vslow) correlate with direction changes or disengagement? These are testable predictions from the dialogue analysis.</p>
   </div>
 
   <div class="card">
     <div class="card-header">
-      <span class="card-title">CetaVox-style open tooling</span>
+      <span class="card-title">Vowel-dialogue integration</span>
     </div>
-    <p>CetaVox's workbench idea (segment, catalogue, hypothesize) fills a real gap. CETI's repos are research code, not user-facing tools. A well-built analysis workbench that wraps CETI's models for non-ML researchers would lower the barrier to entry significantly.</p>
+    <p>The 2026 Begu&scaron; paper and our dialogue analysis use overlapping but not identical datasets. Integrating formant features (a-coda vs i-coda) with our dialogue role analysis could reveal whether vowel-like features carry meaning in conversational context&mdash;e.g., do a-codas and i-codas serve different pragmatic functions?</p>
   </div>
 
   <div class="card">
     <div class="card-header">
-      <span class="card-title">Multimodal integration</span>
+      <span class="card-title">Cross-population dialogue comparison</span>
     </div>
-    <p>Combine ESP's NatureLM-audio (cross-species audio understanding) with CETI's sperm-whale-specific models. Could enable transfer learning between species or reveal shared communication structures across cetaceans.</p>
+    <p>Our dialogue structure (bimodal echo/contrast, 5-click dominance, functional differentiation) is measured on one Caribbean clan. Testing these patterns in Pacific, Mediterranean, or other Atlantic populations would reveal whether dialogue <em>structure</em> is species-universal or culturally learned.</p>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="card-title">WhAM embedding + dialogue position</span>
+    </div>
+    <p>WhAM's learned representations encode acoustic information our ICI-based features miss. Probing WhAM embeddings with our dialogue-position labels (opener, echo, contrast, closer) could reveal whether the acoustic features that distinguish these roles are captured by the generative model's internal representations.</p>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="card-title">Information-theoretic playback design</span>
+    </div>
+    <p>Our entropy rate (0.95 bits with context) and transition preferences tell us exactly how surprising each possible response is. A playback experiment could present whales with sequences of varying surprise&mdash;from maximally predictable (echo chains) to maximally surprising (high-entropy contrasts)&mdash;and measure behavioral response as a function of information content.</p>
   </div>
 </div>
 

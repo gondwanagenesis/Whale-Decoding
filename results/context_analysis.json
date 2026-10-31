@@ -1,0 +1,29 @@
+{
+  "total_dialogue_entries": 3831,
+  "total_exchanges": 219,
+  "vocabulary_overlap_jaccard": 0.44454641163824843,
+  "opener_distribution": {
+    "5-vslow": 70,
+    "5-fast": 29,
+    "5-medium": 22,
+    "5-slow": 20,
+    "8-vfast": 11,
+    "9-vfast": 9,
+    "4-crawl": 6,
+    "7-vslow": 6,
+    "7-vfast": 4,
+    "6-fast": 4
+  },
+  "closer_distribution": {
+    "5-vslow": 76,
+    "5-fast": 46,
+    "5-slow": 21,
+    "5-medium": 9,
+    "7-slow": 9,
+    "9-vfast": 8,
+    "8-vfast": 7,
+    "4-vslow": 4,
+    "7-fast": 4,
+    "6-vslow": 4
+  }
+}
