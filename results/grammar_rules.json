@@ -1,0 +1,209 @@
+{
+  "two_state_machine": {
+    "transitions": {
+      "EE": 782,
+      "EC": 170,
+      "CE": 164,
+      "CC": 982
+    },
+    "P_stay_echo": 0.8214285714285714,
+    "P_stay_contrast": 0.8568935427574171,
+    "mean_echo_run": 5.6,
+    "mean_contrast_run": 6.987804878048781,
+    "stationary_echo": 0.4448750242201124,
+    "stationary_contrast": 0.5551249757798876
+  },
+  "class_selection": {
+    "echo_distribution": {
+      "5-vslow": 0.653,
+      "5-slow": 0.179,
+      "5-fast": 0.131,
+      "5-medium": 0.028,
+      "4-vslow": 0.002,
+      "4-crawl": 0.002,
+      "9-vfast": 0.002,
+      "4-slow": 0.001,
+      "9-slow": 0.001,
+      "8-vfast": 0.001
+    },
+    "contrast_top_pairs": [
+      [
+        "5-slow",
+        "5-vslow",
+        100
+      ],
+      [
+        "5-vslow",
+        "5-slow",
+        95
+      ],
+      [
+        "4-vslow",
+        "5-slow",
+        64
+      ],
+      [
+        "5-slow",
+        "4-vslow",
+        59
+      ],
+      [
+        "5-fast",
+        "5-slow",
+        47
+      ],
+      [
+        "5-slow",
+        "5-fast",
+        45
+      ],
+      [
+        "5-vslow",
+        "4-vslow",
+        38
+      ],
+      [
+        "5-medium",
+        "5-fast",
+        34
+      ]
+    ],
+    "contrast_mechanism": {
+      "tempo_shift": 0.339,
+      "click_shift": 0.19,
+      "both": 0.471
+    },
+    "n_echo": 1007,
+    "n_contrast": 1221
+  },
+  "turn_structure": {
+    "P_yield": 0.738,
+    "mean_turn": 1.57,
+    "max_turn": 41
+  },
+  "opening_rules": {
+    "5-vslow": {
+      "P_echo": 0.9,
+      "P_contrast": 0.1,
+      "n": 42,
+      "predicted_mode": "echo"
+    },
+    "5-medium": {
+      "P_echo": 0.25,
+      "P_contrast": 0.75,
+      "n": 16,
+      "predicted_mode": "contrast"
+    },
+    "5-fast": {
+      "P_echo": 0.77,
+      "P_contrast": 0.23,
+      "n": 13,
+      "predicted_mode": "echo"
+    },
+    "5-slow": {
+      "P_echo": 0.25,
+      "P_contrast": 0.75,
+      "n": 12,
+      "predicted_mode": "contrast"
+    },
+    "8-vfast": {
+      "P_echo": 0.17,
+      "P_contrast": 0.83,
+      "n": 6,
+      "predicted_mode": "contrast"
+    }
+  },
+  "completeness": {
+    "state_persistence_accuracy": 0.841,
+    "single_coda_turn_pct": 0.738,
+    "echo_top5_coverage": 0.993,
+    "total_switches_explained": 2228,
+    "grammar_bits_per_symbol": 1.357
+  },
+  "comparison": {
+    "sperm_whale_codas": {
+      "vocabulary_size": 156,
+      "entropy_rate_bits": 0.95,
+      "zipf_exponent": 1.72,
+      "has_combinatorial": true,
+      "has_turn_taking": true,
+      "has_syntax": "supra-Markov (z=-28)",
+      "semantic_bound_bits": 19,
+      "channel_capacity_bits": 1.79,
+      "confirmed_hockett": 8,
+      "notes": "ICI-timing based; 4 independent features (rhythm, tempo, rubato, ornamentation)"
+    },
+    "bottlenose_dolphin_whistles": {
+      "vocabulary_size": "~200 signature whistles per population",
+      "entropy_rate_bits": "~2.5 (estimated)",
+      "zipf_exponent": "~1.5",
+      "has_combinatorial": false,
+      "has_turn_taking": true,
+      "has_syntax": "sequential (Markov)",
+      "semantic_bound_bits": "unknown",
+      "channel_capacity_bits": "unknown",
+      "confirmed_hockett": 5,
+      "notes": "Signature whistles are identity signals; frequency-modulated"
+    },
+    "humpback_whale_song": {
+      "vocabulary_size": "~30 sound units per year",
+      "entropy_rate_bits": "~2.0",
+      "zipf_exponent": "~1.8",
+      "has_combinatorial": true,
+      "has_turn_taking": false,
+      "has_syntax": "hierarchical (phrase > theme > song)",
+      "semantic_bound_bits": "unknown (broadcast, not dialogic)",
+      "channel_capacity_bits": "N/A (one-way)",
+      "confirmed_hockett": 4,
+      "notes": "Cultural transmission; songs evolve annually; no dialogue"
+    },
+    "vervet_monkey_alarm_calls": {
+      "vocabulary_size": 3,
+      "entropy_rate_bits": "~1.58",
+      "zipf_exponent": "N/A (too few types)",
+      "has_combinatorial": false,
+      "has_turn_taking": false,
+      "has_syntax": "none (single-unit)",
+      "semantic_bound_bits": "~1.58 (eagle/snake/leopard)",
+      "channel_capacity_bits": "~1.58",
+      "confirmed_hockett": 3,
+      "notes": "Referential but fixed; no combination or dialogue"
+    },
+    "bee_waggle_dance": {
+      "vocabulary_size": "continuous (angle + duration)",
+      "entropy_rate_bits": "~4-5 (analog encoding)",
+      "zipf_exponent": "N/A (continuous)",
+      "has_combinatorial": true,
+      "has_turn_taking": false,
+      "has_syntax": "fixed template (angle + waggle duration)",
+      "semantic_bound_bits": "~12 (distance + direction)",
+      "channel_capacity_bits": "~12",
+      "confirmed_hockett": 5,
+      "notes": "Displacement + semantics but no dialogue; fixed grammar"
+    },
+    "bird_song_zebra_finch": {
+      "vocabulary_size": "~5-10 syllables",
+      "entropy_rate_bits": "~1.5",
+      "zipf_exponent": "~1.3",
+      "has_combinatorial": true,
+      "has_turn_taking": true,
+      "has_syntax": "sequential (finite-state)",
+      "semantic_bound_bits": "~3-5 (mate quality + territory)",
+      "channel_capacity_bits": "~3",
+      "confirmed_hockett": 4,
+      "notes": "Learned; syntax is finite-state automaton; limited semantics"
+    },
+    "human_language": {
+      "vocabulary_size": "~50,000+ (active)",
+      "entropy_rate_bits": "~1.0 (English text)",
+      "zipf_exponent": 1.07,
+      "has_combinatorial": true,
+      "has_turn_taking": true,
+      "has_syntax": "recursive (context-free+)",
+      "semantic_bound_bits": "unbounded",
+      "channel_capacity_bits": "~40-60 per second",
+      "confirmed_hockett": 12,
+      "notes": "The benchmark; recursive grammar, displacement, meta-language"
+    }
+  }
+}

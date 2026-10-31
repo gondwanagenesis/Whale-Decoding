@@ -422,6 +422,8 @@
   <button class="nav-tab" data-tab="papers" role="tab" aria-selected="false">Key Papers</button>
   <button class="nav-tab" data-tab="infotheory" role="tab" aria-selected="false">Information Theory</button>
   <button class="nav-tab" data-tab="scorecard" role="tab" aria-selected="false">Language Scorecard</button>
+  <button class="nav-tab" data-tab="grammar" role="tab" aria-selected="false">Formal Grammar</button>
+  <button class="nav-tab" data-tab="comparison" role="tab" aria-selected="false">Cross-Species</button>
   <button class="nav-tab" data-tab="timeline" role="tab" aria-selected="false">Timeline</button>
   <button class="nav-tab" data-tab="open" role="tab" aria-selected="false">Open Questions</button>
 </div>
@@ -1229,6 +1231,213 @@
 
   <div class="callout">
     <strong>Score: 8 confirmed, 1 plausible, 3 unknown.</strong> Sperm whale communication satisfies more structural criteria for language than any non-human system previously studied. The three unknowns (semantics, syntax, displacement) are the hardest to test and the most definitional&mdash;but our analysis has narrowed each. Syntax has strong beyond-Markov structure (0.75 bits CMI) but we can't yet prove hierarchy. Semantics is bounded at ~19 bits/exchange, consistent with social/phatic function. What we can say: this system has the <em>infrastructure</em> for language&mdash;combinatorial coding, phonological structure, Zipf-distributed usage, strong sequential dependencies, tight turn-taking, pragmatic rules, cooperative symmetry, and individual variation. Whether that infrastructure carries meaning in the linguistic sense remains the central open question&mdash;but the specific experiments to answer it are now designable from the structural patterns we've identified.
+  </div>
+</div>
+
+<!-- FORMAL GRAMMAR -->
+<div class="tab-panel" id="panel-grammar">
+  <h2>Formal Grammar of Whale Dialogue</h2>
+  <p class="section-intro">Distilled from 3,839 dialogue codas across 89 recorded exchanges. These rules form the minimal description that captures the observed patterns.</p>
+
+  <div class="card">
+    <div class="card-header"><span class="card-title">Rule 1: Two-State Conversational Machine</span></div>
+    <p>Every whale-switch in dialogue is either an <strong>Echo</strong> (same coda class repeated) or a <strong>Contrast</strong> (different class). These two modes behave like states in a Markov chain with strong self-persistence:</p>
+    <table class="data-table" style="margin:1rem 0">
+      <thead><tr><th>Transition</th><th>Probability</th><th>Mean run</th></tr></thead>
+      <tbody>
+        <tr><td>Echo &rarr; Echo</td><td><strong>82.1%</strong></td><td>5.6 turns before switching</td></tr>
+        <tr><td>Contrast &rarr; Contrast</td><td><strong>85.7%</strong></td><td>7.0 turns before switching</td></tr>
+      </tbody>
+    </table>
+    <p>Stationary distribution: <strong>44.5%</strong> Echo, <strong>55.5%</strong> Contrast. The system spends slightly more time in contrast mode, where whales trade different coda types back and forth.</p>
+  </div>
+
+  <div class="card">
+    <div class="card-header"><span class="card-title">Rule 2: Class Selection Within Mode</span></div>
+    <p><strong>Echo mode</strong> (n=1,007): Almost entirely 5-click codas. The dominant echo class is <code>5-vslow</code> at 65.3%, followed by <code>5-slow</code> (17.9%) and <code>5-fast</code> (13.1%). Top 5 classes cover 99.3% of all echoes.</p>
+    <p><strong>Contrast mode</strong> (n=1,221): How whales differ when responding:</p>
+    <table class="data-table" style="margin:1rem 0">
+      <thead><tr><th>Contrast mechanism</th><th>Frequency</th></tr></thead>
+      <tbody>
+        <tr><td>Both tempo + click count change</td><td><strong>47.1%</strong></td></tr>
+        <tr><td>Tempo shift only</td><td>33.9%</td></tr>
+        <tr><td>Click count shift only</td><td>19.0%</td></tr>
+      </tbody>
+    </table>
+    <p>When contrasting, whales most often change <em>both</em> dimensions simultaneously&mdash;a full coda-class switch rather than a minimal edit.</p>
+  </div>
+
+  <div class="card">
+    <div class="card-header"><span class="card-title">Rule 3: Turn Structure</span></div>
+    <p>Turn-taking follows a geometric distribution with <strong>P(yield) = 0.74</strong> per coda. This means:</p>
+    <table class="data-table" style="margin:1rem 0">
+      <thead><tr><th>Turn length</th><th>Probability</th></tr></thead>
+      <tbody>
+        <tr><td>1 coda (immediate yield)</td><td><strong>73.8%</strong></td></tr>
+        <tr><td>2 codas</td><td>14.2%</td></tr>
+        <tr><td>3 codas</td><td>5.1%</td></tr>
+        <tr><td>4+ codas</td><td>6.9%</td></tr>
+      </tbody>
+    </table>
+    <p>Mean turn: 1.57 codas. Maximum observed: 41 consecutive codas from one whale (a monologue event). The system is overwhelmingly single-coda turns&mdash;strict call-and-response.</p>
+  </div>
+
+  <div class="card">
+    <div class="card-header"><span class="card-title">Rule 4: Opening Protocol</span></div>
+    <p>The first coda in an exchange predicts the initial conversational mode:</p>
+    <table class="data-table" style="margin:1rem 0">
+      <thead><tr><th>Opener</th><th>Predicted mode</th><th>Confidence</th><th>n</th></tr></thead>
+      <tbody>
+        <tr><td><code>5-vslow</code></td><td>Echo</td><td><strong>90%</strong></td><td>42</td></tr>
+        <tr><td><code>5-fast</code></td><td>Echo</td><td>77%</td><td>13</td></tr>
+        <tr><td><code>8-vfast</code></td><td>Contrast</td><td>83%</td><td>6</td></tr>
+        <tr><td><code>5-medium</code></td><td>Contrast</td><td>75%</td><td>16</td></tr>
+        <tr><td><code>5-slow</code></td><td>Contrast</td><td>75%</td><td>12</td></tr>
+      </tbody>
+    </table>
+    <p>Slow 5-click codas invite echoing (social bonding); fast or non-5-click codas invite contrast (information exchange).</p>
+  </div>
+
+  <div class="card" style="border-left: 3px solid var(--accent);">
+    <div class="card-header"><span class="card-title">Complete Grammar (pseudocode)</span></div>
+    <pre style="background:var(--code-bg);padding:1rem;border-radius:6px;overflow-x:auto;font-family:var(--font-mono);font-size:13px;line-height:1.6;color:var(--fg)">Exchange :=
+  opener_coda   &rarr; determines initial_mode
+  repeat {
+    current_mode &rarr; selects coda_class
+    yield? (P=0.74/coda) &rarr; switch speaker
+    mode_transition:
+      if Echo:     stay Echo (P=0.82)
+      if Contrast: stay Contrast (P=0.86)
+  } until exchange ends
+
+Modal rules:
+  Echo:     response = prompt (same class)
+            dominant: 5-vslow (65%), 5-slow (18%)
+  Contrast: response &ne; prompt
+            usually both tempo + clicks change (47%)
+
+Opening rules:
+  5-vslow opener &rarr; Echo mode  (90%)
+  5-fast  opener &rarr; Echo mode  (77%)
+  8-vfast opener &rarr; Contrast   (83%)
+  5-medium       &rarr; Contrast   (75%)</pre>
+    <p><strong>Grammar completeness:</strong> State persistence alone predicts 84.1% of transitions correctly. Residual entropy: 1.36 bits/symbol (down from 3.22 at order 0&mdash;a 58% reduction from grammar alone).</p>
+  </div>
+</div>
+
+<!-- CROSS-SPECIES COMPARISON -->
+<div class="tab-panel" id="panel-comparison">
+  <h2>Cross-Species Communication Comparison</h2>
+  <p class="section-intro">How do sperm whale codas compare to other animal communication systems? We evaluate seven systems on the same axes: vocabulary, entropy, syntax, Hockett's design features, and semantic capacity.</p>
+
+  <div style="overflow-x:auto;">
+    <table class="data-table" style="margin:1.5rem 0;font-size:13px;">
+      <thead>
+        <tr>
+          <th>System</th>
+          <th>Vocabulary</th>
+          <th>Syntax</th>
+          <th>Hockett</th>
+          <th>Turn-taking</th>
+          <th>Semantic bound</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr style="background:var(--accent-light);">
+          <td><strong>Sperm whale codas</strong></td>
+          <td>156 types</td>
+          <td>Supra-Markov (z=&minus;28)</td>
+          <td><strong>8/12</strong></td>
+          <td>Yes (P<sub>yield</sub>=0.74)</td>
+          <td>~19 bits/exchange</td>
+        </tr>
+        <tr>
+          <td>Bottlenose dolphin</td>
+          <td>~200 whistles</td>
+          <td>Sequential (Markov)</td>
+          <td>5/12</td>
+          <td>Yes</td>
+          <td>Unknown</td>
+        </tr>
+        <tr>
+          <td>Humpback whale song</td>
+          <td>~30 units/year</td>
+          <td>Hierarchical</td>
+          <td>4/12</td>
+          <td>No (broadcast)</td>
+          <td>N/A</td>
+        </tr>
+        <tr>
+          <td>Zebra finch song</td>
+          <td>5&ndash;10 syllables</td>
+          <td>Finite-state</td>
+          <td>4/12</td>
+          <td>Yes</td>
+          <td>3&ndash;5 bits</td>
+        </tr>
+        <tr>
+          <td>Bee waggle dance</td>
+          <td>Continuous</td>
+          <td>Fixed template</td>
+          <td>5/12</td>
+          <td>No</td>
+          <td>~12 bits</td>
+        </tr>
+        <tr>
+          <td>Vervet monkey calls</td>
+          <td>3 types</td>
+          <td>None</td>
+          <td>3/12</td>
+          <td>No</td>
+          <td>~1.6 bits</td>
+        </tr>
+        <tr>
+          <td>Human language</td>
+          <td>50,000+</td>
+          <td>Recursive (CF+)</td>
+          <td>12/12</td>
+          <td>Yes</td>
+          <td>Unbounded</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card">
+    <div class="card-header"><span class="card-title">Where Sperm Whales Stand Out</span></div>
+    <p><strong>Highest Hockett score among non-human animals (8/12).</strong> The only animal system with confirmed: combinatorial coding (4 independent features), productive syntax (supra-Markov), dialogic turn-taking, and cultural transmission.</p>
+    <p><strong>Only non-human system with confirmed supra-Markov grammar.</strong> While humpback songs have hierarchical structure, that structure is in one-way broadcasts. Sperm whale codas show grammar <em>in dialogue</em>&mdash;the conversational partner's choice depends on context beyond the immediately preceding coda (CMI = 0.75 bits at distance 2).</p>
+    <p><strong>The highest vocabulary of any dialogic animal system.</strong> 156 distinguishable coda types exceeds any other measured call-and-response system. Dolphins have more whistles, but they function primarily as identity signals, not combinatorial elements in structured exchanges.</p>
+  </div>
+
+  <div class="card">
+    <div class="card-header"><span class="card-title">Where Sperm Whales Fall Short</span></div>
+    <p><strong>No confirmed semantics, displacement, or meta-language.</strong> Our 19-bit semantic bound is consistent with phatic (social bonding) communication rather than propositional content. Bee dances actually encode more semantic information (distance + direction to food) in a simpler system.</p>
+    <p><strong>Entropy rate near human language, but for different reasons.</strong> Sperm whale entropy (0.95 bits/coda) and English text (~1.0 bits/character) are remarkably similar, but human language achieves this through recursive grammar over an enormous vocabulary. Whale codas achieve it through strong mode persistence and a concentrated distribution&mdash;70% of communication is redundant social signal.</p>
+    <p><strong>No recursion detected.</strong> Our center-embedding test found no evidence of nested structures. The grammar is supra-Markov but appears to be a finite-state (regular) grammar, not context-free. This is the ceiling of what ICI-based data can test.</p>
+  </div>
+
+  <div class="card">
+    <div class="card-header"><span class="card-title">The Zipf's Law Comparison</span></div>
+    <p>Zipf's exponent reveals how concentrated a system's usage is:</p>
+    <table class="data-table" style="margin:1rem 0">
+      <thead><tr><th>System</th><th>Zipf exponent</th><th>Interpretation</th></tr></thead>
+      <tbody>
+        <tr><td>Human English</td><td>1.07</td><td>Balanced: many words used moderately</td></tr>
+        <tr><td>Zebra finch</td><td>~1.3</td><td>Somewhat concentrated</td></tr>
+        <tr><td>Bottlenose dolphin</td><td>~1.5</td><td>Identity-dominated</td></tr>
+        <tr><td><strong>Sperm whale</strong></td><td><strong>1.72</strong></td><td>Heavily concentrated: few types dominate</td></tr>
+        <tr><td>Humpback whale</td><td>~1.8</td><td>Ritualized song structure</td></tr>
+      </tbody>
+    </table>
+    <p>Sperm whales have the steepest Zipf exponent of any dialogic system. This is consistent with social communication: a small set of codas carries most of the interaction (identity + bonding), while the long tail of rare types may serve specialized functions.</p>
+  </div>
+
+  <div class="card">
+    <div class="card-header"><span class="card-title">The Big Picture</span></div>
+    <p>Sperm whale communication sits in a unique position: <strong>the most complex dialogic system in the animal kingdom, but still fundamentally social rather than propositional.</strong></p>
+    <p>It is not a &ldquo;language&rdquo; in the human sense&mdash;there is no evidence of displacement, recursion, or open-ended semantics. But it is far more structured than any other animal call-and-response system. The combination of combinatorial coding, supra-Markov grammar, functional differentiation, and bimodal dialogue structure has no known parallel outside humans.</p>
+    <p>The question is no longer <em>&ldquo;do whales communicate?&rdquo;</em> but <em>&ldquo;what is the 19 bits per exchange actually encoding?&rdquo;</em> Identity, social status, emotional state, group coordination&mdash;or something we haven't considered?</p>
   </div>
 </div>
 
