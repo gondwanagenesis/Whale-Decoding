@@ -1,0 +1,12 @@
+{
+  "n_identified_whales": 36,
+  "n_active_whales": 19,
+  "same_unit_jsd": 0.5160388339869392,
+  "diff_unit_jsd": 0.5294221356799167,
+  "unit_similarity_p": 0.7180445916948032,
+  "exchange_fingerprint_stats": {
+    "echo_rate_mean": 0.37470454396571357,
+    "echo_rate_std": 0.4207574921792676,
+    "diversity_mean": 0.2332485826152219
+  }
+}

@@ -1068,6 +1068,58 @@
   <h3>Seasonal Patterns</h3>
   <p>Recording spans January&ndash;June (the breeding season off Dominica). Repertoire diversity peaks in February&ndash;April (3.0&ndash;3.3 bits entropy across 25&ndash;35 types) and drops in May&ndash;June (1.7&ndash;1.8 bits, 19&ndash;21 types). This seasonal shift in communicative diversity may reflect changing social contexts as breeding season progresses.</p>
 
+  <h2>Syntax Probes</h2>
+  <p>We tested for hierarchical structure using three approaches. None is definitive, but together they constrain what kind of grammar whale sequences could have.</p>
+
+  <h3>Center-Embedding (A-X-A Patterns)</h3>
+  <p>A-X-A patterns (where the same class brackets a different one) occur 21% above chance (17.5% observed vs 14.5% expected). The top pattern is <code>5-vslow &rarr; 5-slow &rarr; 5-vslow</code> (61 occurrences)&mdash;a tempo-shift sandwich. This is consistent with, but doesn't prove, hierarchical nesting.</p>
+
+  <h3>Controlled Long-Range Information</h3>
+  <div class="stat-row">
+    <div class="stat">
+      <div class="stat-num">0.75</div>
+      <div class="stat-label">CMI (bits beyond adjacent)</div>
+    </div>
+  </div>
+  <p>The coda two steps back carries <strong>0.75 bits</strong> of information about the current coda <em>beyond what the immediate predecessor reveals</em>. This is large&mdash;it means that knowing what came before the last coda makes the next coda substantially more predictable. Formally: CMI(X<sub>n</sub>; X<sub>n&minus;2</sub> | X<sub>n&minus;1</sub>) = 0.747 bits. This is strong evidence for supra-Markov structure&mdash;not proof of hierarchy, but proof that whale sequences have memory beyond simple pair transitions.</p>
+
+  <h2>Semantic Content Bound</h2>
+  <p>We can't know what codas mean, but we can bound how much meaning an exchange <em>could</em> carry.</p>
+
+  <div class="stat-row">
+    <div class="stat">
+      <div class="stat-num">19</div>
+      <div class="stat-label">Bits per exchange</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">~4</div>
+      <div class="stat-label">Equivalent English words</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">70%</div>
+      <div class="stat-label">Echo/redundancy</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">3.5</div>
+      <div class="stat-label">Unique types per exchange</div>
+    </div>
+  </div>
+  <p>An average exchange (20 codas) carries about 19 bits of non-redundant information (at 0.95 bits/coda after contextual compression). That's roughly equivalent to 4 English words. 70% of the raw coda stream is predictable from context&mdash;it's echo and repetition, not new information.</p>
+
+  <div class="callout">
+    <strong>What this means:</strong> Whale exchanges are overwhelmingly about <strong>social coordination</strong>&mdash;mutual recognition, bonding, and maintaining a conversational state&mdash;rather than dense content transmission. The 19-bit payload is consistent with exchanges that convey identity, social relationship, and current state ("I'm here, I'm with you, we're in this mode") rather than referential content ("there's food at that location"). This doesn't preclude semantics, but it constrains the <em>kind</em> of semantics: phatic communion, not information exchange. In human terms, whale dialogue is closer to a long handshake than to a sentence.
+  </div>
+
+  <h2>Individual Identity</h2>
+  <p>The Dominica dataset includes 36 individually identified whales across 13 social units.</p>
+
+  <h3>Individual Repertoire Signatures</h3>
+  <p>Individual whales have dramatically different repertoire profiles. Whale 5978 uses coda type 1+1+3 for <strong>96%</strong> of all codas (extremely conservative), while whale 5722 uses the rare type 4D for 56% (highly distinctive). Individual variation is large enough that same-unit whales are not statistically more similar than different-unit whales (JSD = 0.516 vs 0.529, p = 0.72).</p>
+
+  <div class="callout">
+    <strong>Unit "dialects" are not about repertoire proportions.</strong> Social units share the same coda types but vary widely in how individual members use them. This suggests that unit-level dialect markers operate at subtler levels&mdash;timing, spectral features, or context-dependent usage&mdash;not at the level of which types are used most. Unit J has the most internally consistent members (mean JSD 0.37), while Unit F is the most diverse (0.66).
+  </div>
+
 </div>
 
 <!-- LANGUAGE SCORECARD -->
@@ -1155,7 +1207,7 @@
     <span class="score-badge unknown">Unknown</span>
     <div class="score-content">
       <h4>Syntax (Hierarchical Structure)</h4>
-      <p>Beyond-Markov structure exists (z = &minus;28), but we cannot distinguish finite-state grammar (regular) from context-free grammar (hierarchical) with this data. The A-B-A pattern and long repetition chains could be either. Testing for hierarchical embedding would require larger corpora and controlled experiments.</p>
+      <p>Beyond-Markov structure is strong: z = &minus;28 vs shuffled controls, and 0.75 bits of conditional mutual information beyond the adjacent coda. A-X-A center-embedding patterns occur 21% above chance. But we still cannot distinguish finite-state grammar (regular, like a playlist on shuffle within modes) from context-free grammar (hierarchical, like nested clauses). The structure we see is consistent with either. Resolving this requires controlled experiments or much larger corpora with richer feature sets.</p>
     </div>
   </div>
 
@@ -1163,7 +1215,7 @@
     <span class="score-badge unknown">Unknown</span>
     <div class="score-content">
       <h4>Semantics (Meaning)</h4>
-      <p>No coda has been mapped to a meaning. We can measure structure, not content. The high mutual information and context-dependent use <em>suggest</em> that codas carry semantic content, but this is inference, not evidence. Playback experiments with behavioral observation are needed.</p>
+      <p>No coda has been mapped to a meaning. We bounded the semantic payload at ~19 bits per exchange (~4 English words), with 70% of the signal being echo/redundancy. The functional roles we identified (opener, echo, contrast, closer) are positional statistics, not meanings. The low content density suggests phatic/social communication rather than referential content, but playback experiments with behavioral observation are needed to test this.</p>
     </div>
   </div>
 
@@ -1176,7 +1228,7 @@
   </div>
 
   <div class="callout">
-    <strong>Score: 8 confirmed, 1 plausible, 3 unknown.</strong> Whale communication satisfies more structural criteria for language than any non-human system previously studied. The three unknowns (semantics, syntax, displacement) are the hardest to test and the most definitional. What we can say: this system has the <em>infrastructure</em> for language&mdash;combinatorial coding, phonological structure, Zipf-distributed usage, strong sequential dependencies, tight turn-taking, pragmatic rules, and cooperative symmetry. Whether that infrastructure carries meaning in the linguistic sense remains the central open question.
+    <strong>Score: 8 confirmed, 1 plausible, 3 unknown.</strong> Sperm whale communication satisfies more structural criteria for language than any non-human system previously studied. The three unknowns (semantics, syntax, displacement) are the hardest to test and the most definitional&mdash;but our analysis has narrowed each. Syntax has strong beyond-Markov structure (0.75 bits CMI) but we can't yet prove hierarchy. Semantics is bounded at ~19 bits/exchange, consistent with social/phatic function. What we can say: this system has the <em>infrastructure</em> for language&mdash;combinatorial coding, phonological structure, Zipf-distributed usage, strong sequential dependencies, tight turn-taking, pragmatic rules, cooperative symmetry, and individual variation. Whether that infrastructure carries meaning in the linguistic sense remains the central open question&mdash;but the specific experiments to answer it are now designable from the structural patterns we've identified.
   </div>
 </div>
 
