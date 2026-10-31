@@ -1,0 +1,484 @@
+{
+  "predictive_model": [
+    {
+      "order": 0,
+      "accuracy": 0.3876272513703994,
+      "strategy": "most_common (5-vslow)",
+      "n_predictions": 3831
+    },
+    {
+      "order": 1,
+      "accuracy": 0.6046997389033942,
+      "strategy": "argmax P(next | 1-gram context)",
+      "n_predictions": 3830,
+      "unseen_contexts": 0,
+      "n_unique_contexts": 77
+    },
+    {
+      "order": 2,
+      "accuracy": 0.7111517367458866,
+      "strategy": "argmax P(next | 2-gram context)",
+      "n_predictions": 3829,
+      "unseen_contexts": 0,
+      "n_unique_contexts": 453
+    },
+    {
+      "order": 3,
+      "accuracy": 0.7732497387669801,
+      "strategy": "argmax P(next | 3-gram context)",
+      "n_predictions": 3828,
+      "unseen_contexts": 0,
+      "n_unique_contexts": 920
+    }
+  ],
+  "cross_whale_prediction": {
+    "n_pairs": 2228,
+    "baseline_accuracy": 0.39452423698384204,
+    "echo_accuracy": 0.4519748653500898,
+    "conditional_accuracy": 0.5596947935368043,
+    "echo_lift_over_baseline": 1.1456200227531286,
+    "conditional_lift_over_echo": 1.2383316782522342
+  },
+  "temporal_evolution": [
+    {
+      "year": 2005,
+      "n_codas": 184,
+      "n_types": 11,
+      "entropy": 2.443379187343939,
+      "dominant_type": "1+1+3",
+      "dominant_pct": 0.44565217391304346,
+      "mean_clicks": 4.989130434782608,
+      "mean_duration": 0.8095798913043479
+    },
+    {
+      "year": 2008,
+      "n_codas": 277,
+      "n_types": 16,
+      "entropy": 2.02538422228917,
+      "dominant_type": "1+1+3",
+      "dominant_pct": 0.49458483754512633,
+      "mean_clicks": 5.317689530685921,
+      "mean_duration": 0.7588140794223825
+    },
+    {
+      "year": 2009,
+      "n_codas": 60,
+      "n_types": 4,
+      "entropy": 1.197173127399483,
+      "dominant_type": "1+1+3",
+      "dominant_pct": 0.7,
+      "mean_clicks": 4.783333333333333,
+      "mean_duration": 0.8821233333333331
+    },
+    {
+      "year": 2010,
+      "n_codas": 1712,
+      "n_types": 30,
+      "entropy": 3.405245940641952,
+      "dominant_type": "1+1+3",
+      "dominant_pct": 0.2867990654205608,
+      "mean_clicks": 5.389602803738318,
+      "mean_duration": 0.6912633761682243
+    },
+    {
+      "year": 2011,
+      "n_codas": 116,
+      "n_types": 13,
+      "entropy": 2.106016540895908,
+      "dominant_type": "5R3",
+      "dominant_pct": 0.603448275862069,
+      "mean_clicks": 5.724137931034483,
+      "mean_duration": 1.3055043103448276
+    },
+    {
+      "year": 2012,
+      "n_codas": 426,
+      "n_types": 19,
+      "entropy": 1.8025682330079282,
+      "dominant_type": "5R3",
+      "dominant_pct": 0.7253521126760564,
+      "mean_clicks": 5.476525821596244,
+      "mean_duration": 1.1787826291079813
+    },
+    {
+      "year": 2015,
+      "n_codas": 902,
+      "n_types": 27,
+      "entropy": 1.9608113101609217,
+      "dominant_type": "1+1+3",
+      "dominant_pct": 0.664079822616408,
+      "mean_clicks": 4.967849223946785,
+      "mean_duration": 0.941477775166297
+    },
+    {
+      "year": 2016,
+      "n_codas": 154,
+      "n_types": 15,
+      "entropy": 1.7378107993652459,
+      "dominant_type": "1+1+3",
+      "dominant_pct": 0.7077922077922078,
+      "mean_clicks": 5.409090909090909,
+      "mean_duration": 1.0198357642857143
+    }
+  ],
+  "vocabulary_drift": [
+    {
+      "year_from": 2005,
+      "year_to": 2008,
+      "jaccard_similarity": 0.5,
+      "new_types": 7,
+      "lost_types": 2,
+      "jensen_shannon_divergence": 0.29882683907368407
+    },
+    {
+      "year_from": 2008,
+      "year_to": 2009,
+      "jaccard_similarity": 0.17647058823529413,
+      "new_types": 1,
+      "lost_types": 13,
+      "jensen_shannon_divergence": 0.2673828682082671
+    },
+    {
+      "year_from": 2009,
+      "year_to": 2010,
+      "jaccard_similarity": 0.13333333333333333,
+      "new_types": 26,
+      "lost_types": 0,
+      "jensen_shannon_divergence": 0.4269263378656381
+    },
+    {
+      "year_from": 2010,
+      "year_to": 2011,
+      "jaccard_similarity": 0.34375,
+      "new_types": 2,
+      "lost_types": 19,
+      "jensen_shannon_divergence": 0.8656526968193606
+    },
+    {
+      "year_from": 2011,
+      "year_to": 2012,
+      "jaccard_similarity": 0.6842105263157895,
+      "new_types": 6,
+      "lost_types": 0,
+      "jensen_shannon_divergence": 0.05610351764781385
+    },
+    {
+      "year_from": 2012,
+      "year_to": 2015,
+      "jaccard_similarity": 0.5333333333333333,
+      "new_types": 11,
+      "lost_types": 3,
+      "jensen_shannon_divergence": 0.8548714478053083
+    },
+    {
+      "year_from": 2015,
+      "year_to": 2016,
+      "jaccard_similarity": 0.5,
+      "new_types": 1,
+      "lost_types": 13,
+      "jensen_shannon_divergence": 0.15914202475716255
+    }
+  ],
+  "hmm_3_states": {
+    "n_states": 3,
+    "state_profiles": [
+      {
+        "state": 0,
+        "n_observations": 523,
+        "fraction": 0.13817701453104358,
+        "top_emissions": [
+          [
+            "5-fast",
+            0.591
+          ],
+          [
+            "5-slow",
+            0.136
+          ],
+          [
+            "3-slow",
+            0.05
+          ],
+          [
+            "6-fast",
+            0.038
+          ],
+          [
+            "3-medium",
+            0.029
+          ]
+        ],
+        "self_transition": 1.0
+      },
+      {
+        "state": 1,
+        "n_observations": 1636,
+        "fraction": 0.4322324966974901,
+        "top_emissions": [
+          [
+            "5-vslow",
+            0.442
+          ],
+          [
+            "5-slow",
+            0.219
+          ],
+          [
+            "4-vslow",
+            0.071
+          ],
+          [
+            "5-medium",
+            0.054
+          ],
+          [
+            "5-fast",
+            0.052
+          ]
+        ],
+        "self_transition": 0.0011706313483349693
+      },
+      {
+        "state": 2,
+        "n_observations": 1626,
+        "fraction": 0.42959048877146633,
+        "top_emissions": [
+          [
+            "5-vslow",
+            0.456
+          ],
+          [
+            "5-slow",
+            0.2
+          ],
+          [
+            "5-fast",
+            0.071
+          ],
+          [
+            "5-medium",
+            0.048
+          ],
+          [
+            "4-vslow",
+            0.047
+          ]
+        ],
+        "self_transition": 0.0003469294605019365
+      }
+    ],
+    "transition_matrix": [
+      [
+        1.0,
+        2.6734182616776444e-21,
+        1.6524210149973641e-21
+      ],
+      [
+        1.5977378405488475e-24,
+        0.0011706313483349693,
+        0.998829368651665
+      ],
+      [
+        1.1286567767306926e-23,
+        0.9996530705394981,
+        0.0003469294605019365
+      ]
+    ],
+    "initial_distribution": [
+      1.0,
+      0.0,
+      0.0
+    ],
+    "vocab_size": 77
+  },
+  "hmm_5_states": {
+    "n_states": 5,
+    "state_profiles": [
+      {
+        "state": 0,
+        "n_observations": 2521,
+        "fraction": 0.6660501981505944,
+        "top_emissions": [
+          [
+            "5-vslow",
+            0.256
+          ],
+          [
+            "5-slow",
+            0.245
+          ],
+          [
+            "5-fast",
+            0.197
+          ],
+          [
+            "4-vslow",
+            0.083
+          ],
+          [
+            "5-medium",
+            0.018
+          ]
+        ],
+        "self_transition": 0.9999999999999996
+      },
+      {
+        "state": 1,
+        "n_observations": 10,
+        "fraction": 0.002642007926023778,
+        "top_emissions": [
+          [
+            "3-slow",
+            0.403
+          ],
+          [
+            "2-slow",
+            0.203
+          ],
+          [
+            "2-fast",
+            0.101
+          ],
+          [
+            "9-fast",
+            0.101
+          ],
+          [
+            "12-fast",
+            0.101
+          ]
+        ],
+        "self_transition": 0.9978116760465483
+      },
+      {
+        "state": 2,
+        "n_observations": 170,
+        "fraction": 0.04491413474240423,
+        "top_emissions": [
+          [
+            "5-medium",
+            0.404
+          ],
+          [
+            "5-fast",
+            0.118
+          ],
+          [
+            "5-slow",
+            0.081
+          ],
+          [
+            "9-fast",
+            0.064
+          ],
+          [
+            "9-vfast",
+            0.048
+          ]
+        ],
+        "self_transition": 0.9999997100211037
+      },
+      {
+        "state": 3,
+        "n_observations": 251,
+        "fraction": 0.06631439894319682,
+        "top_emissions": [
+          [
+            "5-vslow",
+            0.426
+          ],
+          [
+            "5-slow",
+            0.37
+          ],
+          [
+            "5-medium",
+            0.094
+          ],
+          [
+            "6-slow",
+            0.022
+          ],
+          [
+            "7-slow",
+            0.021
+          ]
+        ],
+        "self_transition": 0.9953259565249963
+      },
+      {
+        "state": 4,
+        "n_observations": 833,
+        "fraction": 0.2200792602377807,
+        "top_emissions": [
+          [
+            "5-vslow",
+            0.834
+          ],
+          [
+            "5-fast",
+            0.032
+          ],
+          [
+            "5-medium",
+            0.026
+          ],
+          [
+            "6-vslow",
+            0.02
+          ],
+          [
+            "7-vslow",
+            0.012
+          ]
+        ],
+        "self_transition": 1.0
+      }
+    ],
+    "transition_matrix": [
+      [
+        0.9999999999999996,
+        2.38432062106024e-33,
+        2.1074729601453435e-44,
+        4.622276512394275e-16,
+        1.4147113199374606e-19
+      ],
+      [
+        0.0021883239534517484,
+        0.9978116760465483,
+        8.403578238541535e-50,
+        1.0482435021905595e-175,
+        1.468153945620256e-240
+      ],
+      [
+        9.680709158977918e-24,
+        1.5649968494727372e-39,
+        0.9999997100211037,
+        6.125203123487663e-08,
+        2.2872686522384709e-07
+      ],
+      [
+        4.470701217094691e-21,
+        8.148192142719665e-90,
+        2.6065704374149323e-70,
+        0.9953259565249963,
+        0.004674043475003637
+      ],
+      [
+        6.926028783674091e-34,
+        1.1879642592463802e-90,
+        1.4835591361950551e-40,
+        6.7506464105424235e-18,
+        1.0
+      ]
+    ],
+    "initial_distribution": [
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "vocab_size": 77
+  }
+}

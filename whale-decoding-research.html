@@ -425,6 +425,7 @@
   <button class="nav-tab" data-tab="spectral" role="tab" aria-selected="false">Spectral Proxy</button>
   <button class="nav-tab" data-tab="grammar" role="tab" aria-selected="false">Formal Grammar</button>
   <button class="nav-tab" data-tab="comparison" role="tab" aria-selected="false">Cross-Species</button>
+  <button class="nav-tab" data-tab="prediction" role="tab" aria-selected="false">Prediction &amp; HMM</button>
   <button class="nav-tab" data-tab="timeline" role="tab" aria-selected="false">Timeline</button>
   <button class="nav-tab" data-tab="open" role="tab" aria-selected="false">Open Questions</button>
 </div>
@@ -1534,6 +1535,83 @@ Opening rules:
     <p>Sperm whale communication sits in a unique position: <strong>the most complex dialogic system in the animal kingdom, but still fundamentally social rather than propositional.</strong></p>
     <p>It is not a &ldquo;language&rdquo; in the human sense&mdash;there is no evidence of displacement, recursion, or open-ended semantics. But it is far more structured than any other animal call-and-response system. The combination of combinatorial coding, supra-Markov grammar, functional differentiation, and bimodal dialogue structure has no known parallel outside humans.</p>
     <p>The question is no longer <em>&ldquo;do whales communicate?&rdquo;</em> but <em>&ldquo;what is the 19 bits per exchange actually encoding?&rdquo;</em> Identity, social status, emotional state, group coordination&mdash;or something we haven't considered?</p>
+  </div>
+</div>
+
+<!-- PREDICTION, TEMPORAL, HMM -->
+<div class="tab-panel" id="panel-prediction">
+  <h2>Prediction, Temporal Stability &amp; Latent States</h2>
+  <p class="section-intro">How predictable is whale dialogue? How stable is the language over a decade? And can unsupervised models discover the conversational structure we found by hand?</p>
+
+  <div class="card">
+    <div class="card-header"><span class="card-title">Next-Coda Prediction Accuracy</span></div>
+    <p>N-gram models of increasing context depth, tested on 3,831 dialogue codas:</p>
+    <table class="data-table" style="margin:1rem 0">
+      <thead><tr><th>Context</th><th>Strategy</th><th>Accuracy</th><th>Lift</th></tr></thead>
+      <tbody>
+        <tr><td>0 (baseline)</td><td>Most common class</td><td>38.8%</td><td>1.0&times;</td></tr>
+        <tr><td>1 coda</td><td>Conditional argmax</td><td>60.5%</td><td>1.6&times;</td></tr>
+        <tr><td>2 codas</td><td>Conditional argmax</td><td>71.1%</td><td>1.8&times;</td></tr>
+        <tr><td>3 codas</td><td>Conditional argmax</td><td><strong>77.3%</strong></td><td><strong>2.0&times;</strong></td></tr>
+      </tbody>
+    </table>
+    <p>With just three codas of context, we can predict the next coda <strong>77% of the time</strong>&mdash;double the baseline. The jump from order 0 to order 1 (+21.7pp) is the largest, confirming that immediate context carries the most information, but each additional coda still helps.</p>
+  </div>
+
+  <div class="card">
+    <div class="card-header"><span class="card-title">Cross-Whale Response Prediction</span></div>
+    <p>Can we predict what Whale B will say given what Whale A just said?</p>
+    <table class="data-table" style="margin:1rem 0">
+      <thead><tr><th>Model</th><th>Accuracy</th><th>n pairs</th></tr></thead>
+      <tbody>
+        <tr><td>Baseline (most common)</td><td>39.5%</td><td rowspan="3">2,228</td></tr>
+        <tr><td>Echo (repeat prompt)</td><td>45.2%</td></tr>
+        <tr><td>Conditional (best guess per prompt)</td><td><strong>56.0%</strong></td></tr>
+      </tbody>
+    </table>
+    <p>The echo model only lifts 1.1&times; over baseline&mdash;echoing is the single most common response, but not reliably dominant. The conditional model reaches 56%, meaning <strong>the prompt coda carries substantial information about the response</strong> beyond simple repetition. The gap between echo (45%) and conditional (56%) is the information in contrast-mode rules.</p>
+  </div>
+
+  <div class="card">
+    <div class="card-header"><span class="card-title">Temporal Stability (2005&ndash;2016)</span></div>
+    <p>Is the whale &ldquo;language&rdquo; changing over time? Across 11 years of data:</p>
+    <table class="data-table" style="margin:1rem 0">
+      <thead><tr><th>Measure</th><th>Trend</th><th>p-value</th></tr></thead>
+      <tbody>
+        <tr><td>Entropy</td><td>&minus;0.044 bits/year</td><td>0.553 (n.s.)</td></tr>
+        <tr><td>Vocabulary size</td><td>+0.92 types/year</td><td>0.337 (n.s.)</td></tr>
+        <tr><td>Mean click count</td><td>+0.023 clicks/year</td><td>0.535 (n.s.)</td></tr>
+      </tbody>
+    </table>
+    <p><strong>No significant temporal trends.</strong> The coda system is stable over an 11-year window. Year-to-year vocabulary similarity (Jaccard) averages 0.41 with mean Jensen-Shannon divergence of 0.42&mdash;moderate fluctuation, but no directional drift.</p>
+    <p>The dominant coda type alternates between <code>1+1+3</code> and <code>5R3</code> across years, but this appears to be sampling variation rather than cultural evolution. Contrast with humpback whale songs, which undergo complete turnover every few years.</p>
+  </div>
+
+  <div class="card">
+    <div class="card-header"><span class="card-title">Hidden Markov Model: Why It Fails</span></div>
+    <p>We fitted HMMs with 3 and 5 hidden states to discover latent conversational modes. <strong>Both converged to degenerate solutions</strong>&mdash;absorbing states with self-transition probability of 1.0.</p>
+    <p>This is an informative failure. It means:</p>
+    <ul style="margin:0.5rem 0;padding-left:1.5rem;">
+      <li>The dialogue stream doesn't have cleanly separable latent phases that an unsupervised model can discover from emissions alone</li>
+      <li>The Echo/Contrast structure is visible only at the <em>inter-whale</em> level (comparing consecutive speakers), not in the raw coda sequence</li>
+      <li>Our hand-crafted two-state grammar, which tracks whale switches explicitly, captures structure that generic sequence models miss</li>
+    </ul>
+    <p><strong>The takeaway:</strong> whale dialogue structure is <em>relational</em> (between speakers), not <em>sequential</em> (in the raw stream). This is consistent with it being a social communication system&mdash;the meaning is in the exchange, not the monologue.</p>
+  </div>
+
+  <div class="card" style="border-left: 3px solid var(--accent);">
+    <div class="card-header"><span class="card-title">Predictability Summary</span></div>
+    <p>Whale dialogue is <strong>highly predictable</strong> (77% at order 3) yet <strong>not trivially so</strong> (echo alone gets only 45%). The gap between baseline, echo, and conditional models quantifies exactly how much information flows through each mechanism:</p>
+    <table class="data-table" style="margin:1rem 0">
+      <thead><tr><th>Information source</th><th>Bits/prediction</th></tr></thead>
+      <tbody>
+        <tr><td>Unigram frequency</td><td>2.27 (residual entropy at order 0)</td></tr>
+        <tr><td>+ Immediate context</td><td>1.34 (saves 0.93 bits)</td></tr>
+        <tr><td>+ 2-coda context</td><td>1.06 (saves 0.28 more)</td></tr>
+        <tr><td>+ 3-coda context</td><td>0.95 (saves 0.11 more)</td></tr>
+      </tbody>
+    </table>
+    <p>The remaining 0.95 bits/coda is the irreducible uncertainty&mdash;the &ldquo;free choice&rdquo; each whale retains after all context is accounted for. It corresponds to a choice among roughly 2 equally likely options at each step.</p>
   </div>
 </div>
 
