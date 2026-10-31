@@ -1,0 +1,1027 @@
+<title>Whale Decoding Research</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif&family=DM+Sans:ital,wght@0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap">
+
+<style>
+  /* Deep-ocean research document — structured like a field notebook */
+  :root {
+    --bg: #f7f8fa;
+    --fg: #1a1e2e;
+    --surface: #ffffff;
+    --surface-alt: #eef1f6;
+    --accent: #1565a7;
+    --accent-light: #dceaf5;
+    --muted: #6b7280;
+    --border: #d4dae3;
+    --code-bg: #f0f3f7;
+    --tag-bg: #e8edf4;
+    --tag-fg: #2d4a6f;
+    --link: #1565a7;
+    --star: #d4a017;
+    --font-display: 'Instrument Serif', Georgia, serif;
+    --font-body: 'DM Sans', system-ui, sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0f1219;
+      --fg: #d8dce6;
+      --surface: #181c28;
+      --surface-alt: #1e2333;
+      --accent: #5ba3db;
+      --accent-light: #1c2d42;
+      --muted: #8891a0;
+      --border: #2a3040;
+      --code-bg: #1a1f2c;
+      --tag-bg: #1e2a3c;
+      --tag-fg: #8ab4d8;
+      --link: #5ba3db;
+      --star: #e8b930;
+      color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0f1219;
+    --fg: #d8dce6;
+    --surface: #181c28;
+    --surface-alt: #1e2333;
+    --accent: #5ba3db;
+    --accent-light: #1c2d42;
+    --muted: #8891a0;
+    --border: #2a3040;
+    --code-bg: #1a1f2c;
+    --tag-bg: #1e2a3c;
+    --tag-fg: #8ab4d8;
+    --link: #5ba3db;
+    --star: #e8b930;
+    color-scheme: dark;
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--fg);
+    font-family: var(--font-body);
+    font-size: 15px;
+    line-height: 1.7;
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+    padding-block: 0;
+    max-width: 820px;
+    margin: 0 auto;
+  }
+
+  a { color: var(--link); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  .hero {
+    padding: 3rem 0 2rem;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 2.5rem;
+  }
+  .hero-kicker {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.75rem;
+  }
+  .hero h1 {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 5vw, 2.8rem);
+    font-weight: 400;
+    line-height: 1.15;
+    margin: 0;
+    text-wrap: balance;
+    color: var(--fg);
+  }
+  .hero-sub {
+    font-size: 16px;
+    color: var(--muted);
+    margin-top: 0.75rem;
+    max-width: 580px;
+    line-height: 1.6;
+  }
+  .hero-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: 1.25rem;
+    font-size: 12px;
+    font-family: var(--font-mono);
+    color: var(--muted);
+  }
+  .hero-meta span {
+    background: var(--surface-alt);
+    padding: 4px 10px;
+    border-radius: 4px;
+  }
+
+  h2 {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    font-weight: 400;
+    margin: 2.5rem 0 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border);
+    color: var(--fg);
+  }
+  h3 {
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 1.05rem;
+    margin: 1.5rem 0 0.5rem;
+    color: var(--fg);
+  }
+
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1.25rem;
+    margin-bottom: 1rem;
+  }
+  .card-header {
+    display: flex;
+    align-items: baseline;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin-bottom: 0.5rem;
+  }
+  .card-title {
+    font-weight: 600;
+    font-size: 1rem;
+    color: var(--fg);
+  }
+  .card-title a { color: var(--accent); }
+  .card-badge {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    background: var(--tag-bg);
+    color: var(--tag-fg);
+    padding: 2px 8px;
+    border-radius: 3px;
+  }
+  .card-badge.gold {
+    background: color-mix(in srgb, var(--star) 15%, transparent);
+    color: var(--star);
+  }
+  .card p {
+    font-size: 14px;
+    color: var(--muted);
+    margin: 0.25rem 0 0;
+    line-height: 1.6;
+  }
+  .card-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 0.75rem;
+  }
+  .card-tags span {
+    font-size: 11px;
+    font-family: var(--font-mono);
+    background: var(--code-bg);
+    color: var(--muted);
+    padding: 2px 7px;
+    border-radius: 3px;
+  }
+
+  .timeline {
+    position: relative;
+    padding-left: 1.5rem;
+    margin: 1rem 0;
+  }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 4px;
+    top: 4px;
+    bottom: 4px;
+    width: 2px;
+    background: var(--border);
+    border-radius: 1px;
+  }
+  .tl-item {
+    position: relative;
+    margin-bottom: 1.25rem;
+  }
+  .tl-item::before {
+    content: '';
+    position: absolute;
+    left: -1.5rem;
+    top: 7px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--accent);
+    border: 2px solid var(--bg);
+  }
+  .tl-date {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--accent);
+    font-weight: 500;
+  }
+  .tl-title {
+    font-weight: 600;
+    font-size: 14px;
+    margin: 2px 0;
+  }
+  .tl-body {
+    font-size: 13.5px;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+
+  .stat-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 0.75rem;
+    margin: 1.5rem 0;
+  }
+  .stat {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 1rem;
+    text-align: center;
+  }
+  .stat-num {
+    font-family: var(--font-display);
+    font-size: 1.75rem;
+    color: var(--accent);
+    line-height: 1.2;
+    font-variant-numeric: tabular-nums;
+  }
+  .stat-label {
+    font-size: 11px;
+    font-family: var(--font-mono);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    margin-top: 4px;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+    margin: 1rem 0;
+  }
+  th {
+    text-align: left;
+    font-size: 11px;
+    font-family: var(--font-mono);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--muted);
+    padding: 8px 10px;
+    border-bottom: 2px solid var(--border);
+  }
+  td {
+    padding: 10px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+  }
+  td:first-child { font-weight: 500; }
+  .table-wrap { overflow-x: auto; }
+
+  .callout {
+    background: var(--accent-light);
+    border-left: 3px solid var(--accent);
+    padding: 1rem 1.25rem;
+    border-radius: 0 6px 6px 0;
+    margin: 1.5rem 0;
+    font-size: 14px;
+    line-height: 1.6;
+  }
+  .callout strong { color: var(--fg); }
+
+  code {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    background: var(--code-bg);
+    padding: 2px 6px;
+    border-radius: 3px;
+  }
+
+  .nav-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0;
+    border-bottom: 2px solid var(--border);
+    margin-bottom: 1.5rem;
+  }
+  .nav-tab {
+    padding: 0.5rem 1rem;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--muted);
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -2px;
+    transition: color 0.15s, border-color 0.15s;
+    background: none;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    font-family: var(--font-body);
+  }
+  .nav-tab:hover { color: var(--fg); }
+  .nav-tab.active {
+    color: var(--accent);
+    border-bottom-color: var(--accent);
+  }
+  .tab-panel { display: none; }
+  .tab-panel.active { display: block; }
+
+  footer {
+    margin-top: 3rem;
+    padding: 1.5rem 0;
+    border-top: 1px solid var(--border);
+    font-size: 12px;
+    color: var(--muted);
+    font-family: var(--font-mono);
+  }
+
+  @media (max-width: 500px) {
+    .hero h1 { font-size: 1.75rem; }
+    .stat-row { grid-template-columns: 1fr 1fr; }
+    .card { padding: 1rem; }
+  }
+</style>
+
+<div class="hero">
+  <div class="hero-kicker">Research Overview</div>
+  <h1>Decoding Whale Communication</h1>
+  <div class="hero-sub">
+    The field of cetacean language decoding: from Project CETI's phonetic alphabet to transformer models that generate synthetic codas. A map of the repositories, papers, and open questions.
+  </div>
+  <div class="hero-meta">
+    <span>compiled 2026-10-31</span>
+    <span>species: Physeter macrocephalus</span>
+    <span>status: active research</span>
+  </div>
+</div>
+
+<div class="nav-tabs" role="tablist">
+  <button class="nav-tab active" data-tab="overview" role="tab" aria-selected="true">Overview</button>
+  <button class="nav-tab" data-tab="findings" role="tab" aria-selected="false">Our Analysis</button>
+  <button class="nav-tab" data-tab="repos" role="tab" aria-selected="false">Repositories</button>
+  <button class="nav-tab" data-tab="papers" role="tab" aria-selected="false">Key Papers</button>
+  <button class="nav-tab" data-tab="timeline" role="tab" aria-selected="false">Timeline</button>
+  <button class="nav-tab" data-tab="open" role="tab" aria-selected="false">Open Questions</button>
+</div>
+
+<!-- OVERVIEW -->
+<div class="tab-panel active" id="panel-overview">
+
+  <div class="stat-row">
+    <div class="stat">
+      <div class="stat-num">156</div>
+      <div class="stat-label">Distinguishable codas</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">4</div>
+      <div class="stat-label">Independent features</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">50+</div>
+      <div class="stat-label">CETI researchers</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">10k</div>
+      <div class="stat-label">Coda recordings (WhAM)</div>
+    </div>
+  </div>
+
+  <h2>What We Know So Far</h2>
+
+  <p>Sperm whales communicate using <strong>codas</strong>: short, patterned sequences of clicks. For decades, researchers knew whales produced distinct click patterns, but lacked the tools to find structure in them. That changed in 2024 when machine learning revealed that codas aren't just different patterns&mdash;they form a <strong>combinatorial system</strong>, with four independently modulated properties (rhythm, tempo, rubato, and ornamentation) that combine to produce a large repertoire.</p>
+
+  <p>The 2026 follow-up discovered that individual clicks within codas carry <strong>vowel-like formant structures</strong>. Two types&mdash;"a-codas" (one formant) and "i-codas" (two formants)&mdash;pattern the way vowels do in human speech, including duration contrasts between short and long forms.</p>
+
+  <div class="callout">
+    <strong>What this doesn't mean.</strong> No one has decoded what any specific coda means. The work shows structure&mdash;an alphabet, not a dictionary. The researchers themselves caution that meanings, social functions, and whether this qualifies as "language" in the full sense remain unknown.
+  </div>
+
+  <h2>The Major Players</h2>
+
+  <h3>Project CETI (Cetacean Translation Initiative)</h3>
+  <p>The flagship effort. Founded by marine biologist David Gruber, ML researcher Michael Bronstein, and biologist Shane Gero (whose Dominica Sperm Whale Project provides the core dataset of ~100,000 entries). CETI now has 50+ researchers across MIT, UC Berkeley, Northwestern, and other institutions. Funded by the Audacious Project (TED). Their approach: record everything, find structure with ML, then work toward meaning.</p>
+
+  <h3>Earth Species Project (ESP)</h3>
+  <p>A nonprofit focused on bioacoustics AI across many species. Released <strong>NatureLM-audio</strong>, a foundation model for animal sounds across thousands of species. Their killer whale work with Raincoast Conservation Foundation is expanding in 2026. Co-organized the first AI for Non-Human Animal Communication workshop at NeurIPS. Less focused on translation, more on detection, classification, and monitoring tools.</p>
+
+  <h3>Dominica Sperm Whale Project</h3>
+  <p>The long-running field operation (Shane Gero) that produces the recordings CETI's ML work depends on. Over two decades of data from one Eastern Caribbean clan of females and young. This is where the 8,719 codas in the 2024 Nature Communications paper came from, and the 3,948 codas in the 2026 Proc. R. Soc. B vowel paper.</p>
+
+</div>
+
+<!-- OUR ANALYSIS -->
+<div class="tab-panel" id="panel-findings">
+  <h2>Analysis of the Dominica Dataset</h2>
+  <p>We ran feature extraction, clustering, and dialogue analysis on the full 8,710-coda Dominica Sperm Whale Project dataset and the 3,840-entry dialogue corpus. Here are the findings.</p>
+
+  <div class="stat-row">
+    <div class="stat">
+      <div class="stat-num">8,710</div>
+      <div class="stat-label">Codas analyzed</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">34</div>
+      <div class="stat-label">Coda types found</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">3.26</div>
+      <div class="stat-label">Entropy (bits)</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">64.1%</div>
+      <div class="stat-label">Coding efficiency</div>
+    </div>
+  </div>
+
+  <h3>Feature Distributions</h3>
+  <div class="table-wrap">
+  <table>
+    <thead><tr><th>Feature</th><th>Mean</th><th>Std</th><th>Range</th></tr></thead>
+    <tbody>
+      <tr><td>Tempo (mean ICI)</td><td>0.2045s</td><td>0.1001</td><td>0.016 &ndash; 0.810s</td></tr>
+      <tr><td>Rubato (timing deviation)</td><td>0.2283</td><td>0.1403</td><td>0 &ndash; 0.79</td></tr>
+      <tr><td>Duration</td><td>0.838s</td><td>&mdash;</td><td>0.05 &ndash; 3.9s</td></tr>
+      <tr><td>Ornamentation</td><td colspan="3">99.6% of codas have 0 extra clicks; 0.4% have 1</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <h3>Click Count Distribution</h3>
+  <p>73.3% of all codas have exactly <strong>5 clicks</strong>. The remaining 26.7% spans 2&ndash;10 clicks, with 4-click (9.4%), 6-click (4.9%), and 7-click (4.6%) being most common after 5.</p>
+
+  <h3>Top 10 Coda Types</h3>
+  <div class="table-wrap">
+  <table>
+    <thead><tr><th>Type</th><th>Count</th><th>Mean Tempo</th><th>Mean Rubato</th><th>Units</th><th>Whales</th></tr></thead>
+    <tbody>
+      <tr><td><strong>1+1+3</strong></td><td>3,589 (41.2%)</td><td>0.268s</td><td>0.327</td><td>11</td><td>23</td></tr>
+      <tr><td><strong>5R1</strong></td><td>1,510 (17.3%)</td><td>0.083s</td><td>0.141</td><td>10</td><td>22</td></tr>
+      <tr><td><strong>5R3</strong></td><td>642 (7.4%)</td><td>0.292s</td><td>0.029</td><td>7</td><td>5</td></tr>
+      <tr><td><strong>4R2</strong></td><td>340 (3.9%)</td><td>0.326s</td><td>0.036</td><td>9</td><td>5</td></tr>
+      <tr><td><strong>5R2</strong></td><td>287 (3.3%)</td><td>0.127s</td><td>0.058</td><td>10</td><td>10</td></tr>
+      <tr><td><strong>5-NOISE</strong></td><td>280 (3.2%)</td><td>0.199s</td><td>0.228</td><td>12</td><td>19</td></tr>
+      <tr><td><strong>4D</strong></td><td>219 (2.5%)</td><td>0.174s</td><td>0.289</td><td>8</td><td>6</td></tr>
+      <tr><td><strong>6i</strong></td><td>188 (2.2%)</td><td>0.074s</td><td>0.185</td><td>13</td><td>14</td></tr>
+      <tr><td><strong>8i</strong></td><td>178 (2.0%)</td><td>0.052s</td><td>0.151</td><td>10</td><td>16</td></tr>
+      <tr><td><strong>7D1</strong></td><td>177 (2.0%)</td><td>0.199s</td><td>0.340</td><td>9</td><td>5</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="callout">
+    <strong>Key insight:</strong> The top two types (1+1+3 and 5R1) account for 58.5% of all codas. Both are 5-click patterns but with very different tempos (0.268s vs 0.083s) and rubato profiles (0.327 vs 0.141). This suggests tempo and rubato carry independent information even within the same click count.
+  </div>
+
+  <h3>Clustering vs. Labeled Types</h3>
+  <p>We clustered the 14-dimensional feature vectors (5 scalar features + 9-dim padded rhythm vector) using Ward's method, requesting the same 34 clusters as labeled types.</p>
+  <div class="stat-row">
+    <div class="stat">
+      <div class="stat-num">0.363</div>
+      <div class="stat-label">Silhouette score</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">0.485</div>
+      <div class="stat-label">Adjusted Rand Index</div>
+    </div>
+  </div>
+  <p>An ARI of 0.485 shows moderate agreement: the acoustic features recover roughly half the structure of the human-labeled types. The gap suggests that expert labelers use cues beyond ICI timing&mdash;possibly spectral features (the "vowels" from the 2026 paper) that aren't in this dataset.</p>
+
+  <h2>Dialogue Analysis</h2>
+  <p>We analyzed 219 recorded exchanges between whale pairs from the dialogues corpus (3,840 coda entries).</p>
+
+  <div class="stat-row">
+    <div class="stat">
+      <div class="stat-num">219</div>
+      <div class="stat-label">Exchanges</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">17.5</div>
+      <div class="stat-label">Mean turns/exchange</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">0.52s</div>
+      <div class="stat-label">Median turn gap</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">40.6%</div>
+      <div class="stat-label">Overlap rate</div>
+    </div>
+  </div>
+
+  <h3>Turn-Taking</h3>
+  <p>The median gap between turns is only <strong>0.52 seconds</strong>, and <strong>40.6%</strong> of turn switches involve temporal overlap (one whale starts before the other finishes). This is tighter coordination than human conversation, where turn gaps average ~200ms and overlap rates are ~17%. The whales appear to actively coordinate timing.</p>
+
+  <h3>Tempo Coordination</h3>
+  <div class="table-wrap">
+  <table>
+    <thead><tr><th>Metric</th><th>Value</th></tr></thead>
+    <tbody>
+      <tr><td>Mean tempo ratio (response/prompt)</td><td>1.146</td></tr>
+      <tr><td>Median tempo ratio</td><td><strong>0.995</strong></td></tr>
+      <tr><td>Tempo within 20% match</td><td><strong>57.7%</strong></td></tr>
+      <tr><td>Mean tempo convergence</td><td>0.553</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p>The median tempo ratio of 0.995 is striking: when one whale responds to another, it matches the tempo almost exactly at the median. 57.7% of responses are within 20% of the prompting tempo.</p>
+
+  <h3>Rhythm Coordination</h3>
+  <div class="table-wrap">
+  <table>
+    <thead><tr><th>Metric</th><th>Value</th></tr></thead>
+    <tbody>
+      <tr><td>Same click count rate</td><td><strong>63.4%</strong></td></tr>
+      <tr><td>Mean rhythm distance</td><td>0.153</td></tr>
+      <tr><td>Highly coordinated exchanges (&gt;0.8)</td><td>35.4% of exchanges</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="callout">
+    <strong>Coordination finding:</strong> In 63.4% of turn switches, the responding whale uses the same number of clicks as the prompting whale. Combined with tight tempo matching (median ratio 0.995), this suggests whales actively echo or match each other's coda patterns during conversation. 35.4% of exchanges show very high coordination (&gt;0.8 convergence score).
+  </div>
+
+  <h2>Dialogue Deep-Dive</h2>
+  <p>We analyzed 2,239 whale-to-whale switches across all recorded exchanges, classifying each by coda class (click count + tempo band) to reveal the fine structure of whale conversation.</p>
+
+  <h3>Two Conversational Modes</h3>
+  <p>Whale exchanges aren't a smooth blend of echoing and contrasting. They operate in <strong>two distinct modes</strong>:</p>
+
+  <div class="stat-row">
+    <div class="stat">
+      <div class="stat-num">82%</div>
+      <div class="stat-label">P(echo | prev echo)</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">14%</div>
+      <div class="stat-label">P(echo | prev contrast)</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">44.9%</div>
+      <div class="stat-label">Overall echo rate</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">2,239</div>
+      <div class="stat-label">Whale switches</div>
+    </div>
+  </div>
+
+  <p>Once whales begin echoing (matching the other's coda class), they continue with P&nbsp;=&nbsp;0.82. Once they diverge, they stay diverged with P&nbsp;=&nbsp;0.86. This is <strong>bimodal conversation structure</strong>&mdash;not gradual drift, but a toggle between two regimes.</p>
+
+  <div class="table-wrap">
+  <table>
+    <thead><tr><th>Transition</th><th>Count</th><th>Rate</th></tr></thead>
+    <tbody>
+      <tr><td>Echo &rarr; Echo</td><td>780</td><td>37.0%</td></tr>
+      <tr><td>Echo &rarr; Contrast</td><td>171</td><td>8.1%</td></tr>
+      <tr><td>Contrast &rarr; Echo</td><td>165</td><td>7.8%</td></tr>
+      <tr><td>Contrast &rarr; Contrast</td><td>992</td><td>47.1%</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <h3>The 5-Click Echo Anomaly</h3>
+  <p>Echo behavior is <strong>concentrated almost entirely in 5-click codas</strong>. This is the sharpest finding in the dialogue analysis:</p>
+
+  <div class="stat-row">
+    <div class="stat">
+      <div class="stat-num">57.4%</div>
+      <div class="stat-label">5-click echo rate</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">&asymp;0%</div>
+      <div class="stat-label">Non-5-click echo</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">80.5%</div>
+      <div class="stat-label">5-click click match</div>
+    </div>
+  </div>
+
+  <p>Among 5-click codas, the echo rate varies sharply by tempo band:</p>
+  <div class="table-wrap">
+  <table>
+    <thead><tr><th>Tempo Band</th><th>n</th><th>Echo Rate</th><th>Click Match</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Very slow</strong> (0.25&ndash;0.4s ICI)</td><td>884</td><td><strong>74.4%</strong></td><td>85.5%</td></tr>
+      <tr><td><strong>Fast</strong> (0.06&ndash;0.1s ICI)</td><td>258</td><td>51.2%</td><td>80.6%</td></tr>
+      <tr><td><strong>Slow</strong> (0.15&ndash;0.25s ICI)</td><td>501</td><td>35.9%</td><td>69.3%</td></tr>
+      <tr><td><strong>Medium</strong> (0.1&ndash;0.15s ICI)</td><td>94</td><td>28.7%</td><td>94.7%</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="callout">
+    <strong>Why 5-click codas?</strong> 73.3% of all codas in the repertoire are 5-click patterns. With two dominant types (1+1+3 at slow tempo, 5R1 at fast tempo), 5-click codas may serve as the <strong>conversational backbone</strong>&mdash;the "common ground" coda type that both whales share, while non-5-click codas carry more specific or individual information that isn't echoed. The very-slow 5-click pattern (matching 1+1+3, the most common coda type) has the highest echo rate at 74.4%.
+  </div>
+
+  <h3>What Contrast Looks Like</h3>
+  <p>When a whale breaks from echoing a 5-click prompt, it doesn't switch to a radically different form. The most common contrast moves:</p>
+  <div class="table-wrap">
+  <table>
+    <thead><tr><th>Response to 5-click prompt</th><th>Count</th><th>Share of contrasts</th></tr></thead>
+    <tbody>
+      <tr><td><strong>5-slow</strong> (tempo shift, same clicks)</td><td>164</td><td>22.1%</td></tr>
+      <tr><td><strong>5-vslow</strong> (tempo shift, same clicks)</td><td>109</td><td>14.7%</td></tr>
+      <tr><td><strong>4-vslow</strong> (click count change)</td><td>104</td><td>14.0%</td></tr>
+      <tr><td><strong>5-fast</strong> (tempo shift, same clicks)</td><td>81</td><td>10.9%</td></tr>
+      <tr><td><strong>5-medium</strong> (tempo shift, same clicks)</td><td>49</td><td>6.6%</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p>The primary contrast mechanism is a <strong>tempo-band shift</strong> while keeping 5 clicks (54.3% of contrasts), not a click-count change. This supports the idea that tempo carries independent communicative weight.</p>
+
+  <h3>Turn Structure</h3>
+  <div class="stat-row">
+    <div class="stat">
+      <div class="stat-num">74%</div>
+      <div class="stat-label">Single-coda turns</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">1.56</div>
+      <div class="stat-label">Mean run length</div>
+    </div>
+  </div>
+  <p>74% of all turns consist of a single coda before the other whale responds. Multi-coda runs (2+) make up only 26% of turns. This means whale conversation is predominantly <strong>one-coda-per-turn</strong>&mdash;each "utterance" is a single click pattern, and the other whale immediately responds. Extended monologues are rare.</p>
+
+  <h3>Tempo Convergence</h3>
+  <div class="stat-row">
+    <div class="stat">
+      <div class="stat-num">&minus;0.02</div>
+      <div class="stat-label">Mean convergence</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">45%</div>
+      <div class="stat-label">Exchanges that converge</div>
+    </div>
+  </div>
+  <p>Whales do <strong>not</strong> gradually converge in tempo over the course of an exchange (mean convergence is slightly negative at &minus;0.0195). Only 45% of exchanges show any convergence at all. Combined with the tight median tempo ratio of 0.995, this means whales <strong>match tempo immediately on the first response, or not at all</strong>. There is no "warming up" period.</p>
+
+  <h3>Exchange Phases</h3>
+  <p>Splitting exchanges into opening, middle, and closing thirds reveals remarkably uniform acoustic properties:</p>
+  <div class="table-wrap">
+  <table>
+    <thead><tr><th>Phase</th><th>Mean Tempo</th><th>Mean Rubato</th><th>Echo Rate</th></tr></thead>
+    <tbody>
+      <tr><td>Opening</td><td>0.205s</td><td>0.242</td><td>42.7%</td></tr>
+      <tr><td>Middle</td><td>0.210s</td><td>0.254</td><td>48.9%</td></tr>
+      <tr><td>Closing</td><td>0.209s</td><td>0.242</td><td>41.2%</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p>There is no crescendo, no wind-down. Whale exchanges maintain <strong>stable acoustic parameters throughout</strong>. The slightly higher echo rate in the middle (48.9% vs ~42%) may reflect longer echo chains once matching is established. These are conversations without the dramatic arc that characterizes many human interactions.</p>
+
+  <div class="callout">
+    <strong>Synthesis: What dialogue patterns tell us.</strong> Sperm whale conversation is structurally unlike human dialogue. It is <strong>bimodal</strong> (echo or contrast, rarely switching), <strong>immediate</strong> (tempo match happens on the first exchange or not at all), <strong>terse</strong> (one coda per turn), and <strong>flat</strong> (no warm-up, no crescendo, no closing ritual). The 5-click coda dominates dialogue the way common words dominate human speech&mdash;it is the medium of echo-based matching, the shared vocabulary that both whales can produce and mirror. When whales do break the echo, they modulate tempo, not click count. This two-channel structure (click count for "what type" and tempo for "what variant") functioning differently in dialogue than in repertoire statistics is evidence of <strong>pragmatic structure</strong>&mdash;rules governing how codas are used in context, distinct from the combinatorial rules governing how they are constructed.
+  </div>
+
+  <h3>Social Unit Repertoires</h3>
+  <div class="table-wrap">
+  <table>
+    <thead><tr><th>Unit</th><th>Codas</th><th>Types</th><th>Entropy (bits)</th></tr></thead>
+    <tbody>
+      <tr><td>A</td><td>1,678</td><td>30</td><td>2.66</td></tr>
+      <tr><td>F</td><td>1,586</td><td>29</td><td><strong>3.14</strong></td></tr>
+      <tr><td>U</td><td>1,149</td><td>26</td><td>2.30</td></tr>
+      <tr><td>J</td><td>1,023</td><td>27</td><td>1.71</td></tr>
+      <tr><td>V</td><td>530</td><td>23</td><td>3.08</td></tr>
+      <tr><td>S</td><td>464</td><td>17</td><td>1.99</td></tr>
+      <tr><td>K</td><td>426</td><td>19</td><td>1.80</td></tr>
+      <tr><td>P</td><td>388</td><td>21</td><td>2.22</td></tr>
+      <tr><td>T</td><td>382</td><td>12</td><td>2.03</td></tr>
+      <tr><td>D</td><td>336</td><td>14</td><td>2.18</td></tr>
+      <tr><td>N</td><td>312</td><td>18</td><td>2.82</td></tr>
+      <tr><td>R</td><td>302</td><td>17</td><td>2.40</td></tr>
+      <tr><td>ZZZ</td><td>134</td><td>10</td><td>2.27</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p>Unit F has the highest repertoire entropy (3.14 bits), meaning it uses the most diverse spread of coda types. Unit J has the lowest (1.71 bits) despite having 27 types&mdash;it concentrates heavily on a few. This variation suggests that "vocabulary richness" differs between social groups, which could reflect different social structures, roles, or dialectal preferences.</p>
+
+</div>
+
+<!-- REPOSITORIES -->
+<div class="tab-panel" id="panel-repos">
+  <h2>GitHub Repositories</h2>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="card-title"><a href="https://github.com/Project-CETI/wham">Project-CETI/wham</a></span>
+      <span class="card-badge gold">NeurIPS 2025</span>
+    </div>
+    <p>WhAM (Whale Acoustics Model)&mdash;a transformer that generates synthetic sperm whale codas from any audio prompt. Built by finetuning VampNet (masked acoustic token model pretrained on music) on 10k coda recordings. Handles generation, translation, and classification. Code, model weights, and partial data available.</p>
+    <div class="card-tags">
+      <span>transformer</span>
+      <span>VampNet</span>
+      <span>audio generation</span>
+      <span>Python</span>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="card-title"><a href="https://github.com/Project-CETI">Project-CETI</a> (Organization)</span>
+      <span class="card-badge">10+ repos</span>
+    </div>
+    <p>The full CETI GitHub org. Key repos beyond WhAM:</p>
+    <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>Repo</th><th>What it does</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><code>sw-combinatoriality</code></td><td>Dataset and code for the 2024 Nature Comms "phonetic alphabet" paper</td></tr>
+        <tr><td><code>theory-of-umt</code></td><td>Unsupervised machine translation for animal communication (NeurIPS 2023)</td></tr>
+        <tr><td><code>data-ingest</code></td><td>Pipeline: whale tag data &rarr; cloud &rarr; ML-ready dataset</td></tr>
+        <tr><td><code>whale-tag-embedded</code></td><td>C firmware for the embedded computer inside the physical whale tags</td></tr>
+        <tr><td><code>whale-tag-recovery</code></td><td>APRS + Swarm satellite GPS tracking for tag recovery</td></tr>
+        <tr><td><code>avatars-code</code></td><td>Autonomy and sensing for the AVATARS robotic framework (Science Robotics 2024)</td></tr>
+        <tr><td><code>tag-vizier</code></td><td>Data processing for whale rendezvous tracking</td></tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="card-title"><a href="https://github.com/revrune/cetavox">revrune/cetavox</a></span>
+      <span class="card-badge">early stage</span>
+    </div>
+    <p>Independent project aiming to build a workbench for segmenting, cataloguing, and analyzing cetacean recordings. Explicitly rejects the "universal translator" framing. The workbench is not yet built; v1 is planned but not scheduled. Zero stars, zero forks as of search.</p>
+    <div class="card-tags">
+      <span>bioacoustics</span>
+      <span>workbench</span>
+      <span>planned</span>
+    </div>
+  </div>
+
+  <div class="callout">
+    <strong>Data access note.</strong> CETI's WhAM README states that only part of the annotated dataset is publicly available. Full reproduction requires access to the complete dataset. The org states a commitment to open data and open source.
+  </div>
+</div>
+
+<!-- KEY PAPERS -->
+<div class="tab-panel" id="panel-papers">
+  <h2>Key Papers</h2>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="card-title">Contextual and combinatorial structure in sperm whale vocalisations</span>
+      <span class="card-badge gold">Nature Comms</span>
+    </div>
+    <p><strong>Sharma, Gero, Payne, Gruber, Rus, Torralba, Andreas</strong> &middot; May 2024</p>
+    <p>The "phonetic alphabet" paper. Analyzed 8,719 codas from the Eastern Caribbean clan. Found that codas are explained by four independently modulated properties&mdash;rhythm, tempo, rubato, and ornamentation&mdash;producing 156 distinguishable coda types. Rubato and ornamentation vary with social context; rhythm and tempo do not.</p>
+    <p style="margin-top:0.5rem"><a href="https://nature.com/articles/s41467-024-47221-8.pdf">Paper (PDF)</a> &middot; <a href="https://github.com/Project-CETI">Code (Project-CETI org)</a></p>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="card-title">The phonology of sperm whale coda vowels</span>
+      <span class="card-badge gold">Proc. R. Soc. B</span>
+    </div>
+    <p><strong>Begu&scaron;, Sprouse, Gruber, Gero et al.</strong> &middot; April 2026</p>
+    <p>Analyzed 3,948 codas from 15 whales (females and young, Dominica, 2014&ndash;2018). Found two formant-based coda types: "a-codas" (one formant, longer) and "i-codas" (two formants). These pattern like vowels&mdash;not just acoustically similar, but structurally organized. I-codas show a bimodal duration distribution (short i vs. long &imacr;).</p>
+    <p style="margin-top:0.5rem">DOI: 10.1098/rspb.2025.2994 &middot; Open access</p>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="card-title">WhAM: Towards A Translative Model of Sperm Whale Vocalization</span>
+      <span class="card-badge gold">NeurIPS 2025</span>
+    </div>
+    <p><strong>Paradise, Muralikrishnan et al.</strong> (UC Berkeley, Project CETI, Northwestern) &middot; Dec 2025</p>
+    <p>A transformer model that generates synthetic codas from any audio prompt. Finetuned VampNet on 10k recordings. Evaluated with Fr&eacute;chet Audio Distance and perceptual studies by marine biologists. Its learned representations achieve strong classification performance on rhythm, social unit, and vowel tasks despite being trained for generation.</p>
+    <p style="margin-top:0.5rem"><a href="https://arxiv.org/html/2512.02206v1">arXiv</a> &middot; <a href="https://github.com/Project-CETI/wham">Code</a></p>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="card-title">Theory of Unsupervised Machine Translation for Animal Communication</span>
+    </div>
+    <p><strong>NeurIPS 2023</strong></p>
+    <p>Theoretical foundation for translating animal vocalizations without paired data. Explores when unsupervised MT can work for non-human communication systems. Code at <code>Project-CETI/theory-of-umt</code>.</p>
+  </div>
+
+  <h3>Adjacent Work</h3>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="card-title">NatureLM-audio</span>
+      <span class="card-badge">Earth Species</span>
+    </div>
+    <p>Audio-language foundation model for bioacoustics. Analyzes animal vocalizations across thousands of species using natural language prompts. Companion paper AVEX accepted at ICLR 2026.</p>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="card-title">AVATARS: Autonomous Vehicle and Tag for Aquatic Research and Sensing</span>
+      <span class="card-badge">Science Robotics 2024</span>
+    </div>
+    <p>Robotic framework for whale tracking and data collection. Drones and gliders with ML-based systems follow whales autonomously. Code at <code>Project-CETI/avatars-code</code>.</p>
+  </div>
+</div>
+
+<!-- TIMELINE -->
+<div class="tab-panel" id="panel-timeline">
+  <h2>Research Timeline</h2>
+
+  <div class="timeline">
+    <div class="tl-item">
+      <div class="tl-date">2005 &ndash; ongoing</div>
+      <div class="tl-title">Dominica Sperm Whale Project</div>
+      <div class="tl-body">Shane Gero begins long-term recording of one Eastern Caribbean sperm whale clan. This dataset eventually reaches ~100,000 entries and becomes the foundation for all CETI ML work.</div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-date">~2020</div>
+      <div class="tl-title">Project CETI Founded</div>
+      <div class="tl-body">David Gruber (Radcliffe fellow) asks Michael Bronstein whether AI could analyze whale sounds. Connects with Shane Gero. The Audacious Project (TED) becomes a major funder.</div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-date">2023</div>
+      <div class="tl-title">Unsupervised Translation Theory (NeurIPS)</div>
+      <div class="tl-body">Theoretical paper on when unsupervised machine translation can work for animal communication. Establishes the mathematical framework for CETI's approach.</div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-date">May 2024</div>
+      <div class="tl-title">The "Phonetic Alphabet" (Nature Communications)</div>
+      <div class="tl-body">Sharma et al. reveal that sperm whale codas form a combinatorial system with 156 distinguishable types, built from four independently modulated properties. The first evidence that whale vocalizations have alphabet-like structure.</div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-date">2024</div>
+      <div class="tl-title">AVATARS Robotic Framework (Science Robotics)</div>
+      <div class="tl-body">Autonomous drones and gliders with ML systems for following and recording whales in the wild. Scales data collection beyond what human divers can achieve.</div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-date">Nov 2025</div>
+      <div class="tl-title">First Vowel-Like Spectral Patterns</div>
+      <div class="tl-body">CETI reports initial evidence of vowel-like spectral features in codas. Precursor to the full 2026 phonology paper.</div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-date">Dec 2025</div>
+      <div class="tl-title">WhAM at NeurIPS</div>
+      <div class="tl-body">The first transformer model that generates synthetic sperm whale codas from audio prompts. Finetuned VampNet on 10k recordings. Strong classification performance emerges from the generative training.</div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-date">Apr 2026</div>
+      <div class="tl-title">Coda Vowels (Proc. R. Soc. B)</div>
+      <div class="tl-body">Begu&scaron; et al. show that click formant structures pattern like vowels: a-codas and i-codas, with duration contrasts. Not just acoustic resemblance&mdash;structural phonological organization.</div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-date">2026</div>
+      <div class="tl-title">ESP Expands Killer Whale Work</div>
+      <div class="tl-body">Earth Species Project moves beyond pilot phase with Raincoast Conservation Foundation to study killer whale vocalizations across multiple populations using their NatureLM-audio model.</div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-date">Jul 2026</div>
+      <div class="tl-title">Mediterranean Dialect Report</div>
+      <div class="tl-body">A study finds eastern Mediterranean sperm whales use a distinct regional dialect. (Single source, not independently verified&mdash;treat with caution.)</div>
+    </div>
+  </div>
+</div>
+
+<!-- OPEN QUESTIONS -->
+<div class="tab-panel" id="panel-open">
+  <h2>Open Questions &amp; Future Directions</h2>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="card-title">What do any codas mean?</span>
+      <span class="card-badge">fundamental</span>
+    </div>
+    <p>Structure has been found (alphabet, vowels), but no coda has been mapped to a meaning. The researchers note that understanding semantic capabilities will require in-depth and interactive research, including playback experiments in natural settings.</p>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="card-title">Is this language?</span>
+      <span class="card-badge">definitional</span>
+    </div>
+    <p>Combinatorial structure and phonology are necessary conditions for language but not sufficient. Human language also requires syntax, semantics, displacement (talking about absent things), and productivity (novel sentences). None of these have been demonstrated in whale codas yet.</p>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="card-title">How do other populations differ?</span>
+      <span class="card-badge">generalization</span>
+    </div>
+    <p>Almost all ML work uses recordings from one clan off Dominica. Other sperm whale populations likely communicate in different ways. The Mediterranean dialect report (if confirmed) would be the first step toward comparative phonology.</p>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="card-title">Can WhAM's representations reveal semantics?</span>
+      <span class="card-badge">ML frontier</span>
+    </div>
+    <p>WhAM was trained for generation but developed useful classification representations as a byproduct. If paired with behavioral data (what were the whales doing when they produced each coda?), these representations might help cluster codas by function.</p>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="card-title">Data scale</span>
+      <span class="card-badge">infrastructure</span>
+    </div>
+    <p>Estimates of data needed vary wildly: some experts cite a billion clicks (~100&ndash;200 million codas), while WhAM was trained on 10k recordings. The AVATARS robotic framework should accelerate collection, but the gap between current data and what translation might require remains large.</p>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="card-title">Ethical boundaries</span>
+      <span class="card-badge">ethics</span>
+    </div>
+    <p>Should researchers play back synthetic codas to wild whales? Playback experiments are seen as a necessary next step for validating meaning, but could also disturb the animals. Commentators have also flagged concerns about tech company funding and potential exploitation of findings.</p>
+  </div>
+
+  <h2>Build-On-Others Opportunities</h2>
+
+  <div class="callout">
+    <strong>For someone entering this field.</strong> The most accessible entry points for building on existing work:
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="card-title">Behavioral annotation layer</span>
+    </div>
+    <p>The biggest gap: codas exist in ML-ready form, but behavioral context (what the whales were doing) is not systematically paired with acoustic data. Building a coda-to-behavior annotation pipeline on top of CETI's <code>data-ingest</code> would be high-impact.</p>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="card-title">Cross-population comparison</span>
+    </div>
+    <p>Apply <code>sw-combinatoriality</code> methods to recordings from non-Caribbean whale populations. This tests whether the 156-coda alphabet and the four-feature structure are universal or dialect-specific.</p>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="card-title">Probe WhAM's latent space</span>
+    </div>
+    <p>WhAM's learned representations are strong for classification despite generative training. Probing these representations with behavioral labels, social-unit labels, or environmental context could reveal functional clustering that raw acoustics don't show.</p>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="card-title">CetaVox-style open tooling</span>
+    </div>
+    <p>CetaVox's workbench idea (segment, catalogue, hypothesize) fills a real gap. CETI's repos are research code, not user-facing tools. A well-built analysis workbench that wraps CETI's models for non-ML researchers would lower the barrier to entry significantly.</p>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="card-title">Multimodal integration</span>
+    </div>
+    <p>Combine ESP's NatureLM-audio (cross-species audio understanding) with CETI's sperm-whale-specific models. Could enable transfer learning between species or reveal shared communication structures across cetaceans.</p>
+  </div>
+</div>
+
+<footer>
+  Sources: Project CETI &middot; Nature Communications &middot; Proc. R. Soc. B &middot; NeurIPS &middot; Earth Species Project &middot; arXiv &middot; National Geographic &middot; MIT CSAIL &middot; Discover Magazine
+</footer>
+
+<script>
+  document.querySelectorAll('.nav-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      document.querySelectorAll('.nav-tab').forEach(t => {
+        t.classList.remove('active');
+        t.setAttribute('aria-selected', 'false');
+      });
+      document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+      tab.classList.add('active');
+      tab.setAttribute('aria-selected', 'true');
+      const panel = document.getElementById('panel-' + tab.dataset.tab);
+      if (panel) panel.classList.add('active');
+      try { localStorage.setItem('whale-tab', tab.dataset.tab); } catch(e) {}
+    });
+  });
+  try {
+    const saved = localStorage.getItem('whale-tab');
+    if (saved) {
+      const tab = document.querySelector(`.nav-tab[data-tab="${saved}"]`);
+      if (tab) tab.click();
+    }
+  } catch(e) {}
+</script>
