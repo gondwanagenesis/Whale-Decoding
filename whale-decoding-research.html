@@ -422,6 +422,7 @@
   <button class="nav-tab" data-tab="papers" role="tab" aria-selected="false">Key Papers</button>
   <button class="nav-tab" data-tab="infotheory" role="tab" aria-selected="false">Information Theory</button>
   <button class="nav-tab" data-tab="scorecard" role="tab" aria-selected="false">Language Scorecard</button>
+  <button class="nav-tab" data-tab="spectral" role="tab" aria-selected="false">Spectral Proxy</button>
   <button class="nav-tab" data-tab="grammar" role="tab" aria-selected="false">Formal Grammar</button>
   <button class="nav-tab" data-tab="comparison" role="tab" aria-selected="false">Cross-Species</button>
   <button class="nav-tab" data-tab="timeline" role="tab" aria-selected="false">Timeline</button>
@@ -1231,6 +1232,101 @@
 
   <div class="callout">
     <strong>Score: 8 confirmed, 1 plausible, 3 unknown.</strong> Sperm whale communication satisfies more structural criteria for language than any non-human system previously studied. The three unknowns (semantics, syntax, displacement) are the hardest to test and the most definitional&mdash;but our analysis has narrowed each. Syntax has strong beyond-Markov structure (0.75 bits CMI) but we can't yet prove hierarchy. Semantics is bounded at ~19 bits/exchange, consistent with social/phatic function. What we can say: this system has the <em>infrastructure</em> for language&mdash;combinatorial coding, phonological structure, Zipf-distributed usage, strong sequential dependencies, tight turn-taking, pragmatic rules, cooperative symmetry, and individual variation. Whether that infrastructure carries meaning in the linguistic sense remains the central open question&mdash;but the specific experiments to answer it are now designable from the structural patterns we've identified.
+  </div>
+</div>
+
+<!-- SPECTRAL PROXY ANALYSIS -->
+<div class="tab-panel" id="panel-spectral">
+  <h2>Spectral Proxy Analysis</h2>
+  <p class="section-intro">Without raw audio, we derive formant-like features from ICI timing patterns, inspired by Begus et al. 2026's discovery that sperm whale codas contain vowel-like structures. ICI <em>ratio contours</em> (how the spacing between clicks accelerates or decelerates) serve as proxies for the spectral formant transitions in the acoustic signal.</p>
+
+  <div class="card">
+    <div class="card-header"><span class="card-title">Contour Types: a-codas vs i-codas</span></div>
+    <p>Classifying each coda's ICI contour by whether it's monotonic (a-type: one &ldquo;formant&rdquo;) or has an inflection point (i-type: two &ldquo;formants&rdquo;):</p>
+    <div class="stat-grid" style="grid-template-columns: repeat(3, 1fr);">
+      <div class="stat-card">
+        <div class="stat-num" style="font-size:1.5rem;">54.9%</div>
+        <div class="stat-label">a-type (monotonic)</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num" style="font-size:1.5rem;">43.8%</div>
+        <div class="stat-label">i-type (inflected)</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num" style="font-size:1.5rem;">1.4%</div>
+        <div class="stat-label">short (&lt;3 ICI)</div>
+      </div>
+    </div>
+    <p>Subtypes: <strong>a-falling</strong> (41.5%, decelerating clicks) dominates, followed by <strong>i-single</strong> (36.1%, one inflection point), <strong>a-rising</strong> (9.6%, accelerating), <strong>i-multi</strong> (7.7%, complex), and <strong>a-flat</strong> (3.7%, steady rhythm).</p>
+  </div>
+
+  <div class="card">
+    <div class="card-header"><span class="card-title">Contour Maps to Expert CodaType</span></div>
+    <p>Some expert-labeled coda types are almost purely one contour class:</p>
+    <table class="data-table" style="margin:1rem 0">
+      <thead><tr><th>CodaType</th><th>n</th><th>a-type</th><th>i-type</th><th>Complexity</th></tr></thead>
+      <tbody>
+        <tr><td><code>4D</code></td><td>219</td><td><strong>99%</strong></td><td>1%</td><td>0.00</td></tr>
+        <tr><td><code>4R2</code></td><td>340</td><td>64%</td><td>36%</td><td>0.00</td></tr>
+        <tr><td><code>8i</code></td><td>178</td><td>66%</td><td>34%</td><td>2.08</td></tr>
+        <tr><td><code>5R2</code></td><td>287</td><td>30%</td><td><strong>70%</strong></td><td>0.86</td></tr>
+        <tr><td><code>6-NOISE</code></td><td>172</td><td>26%</td><td><strong>74%</strong></td><td>1.10</td></tr>
+        <tr><td><code>1+1+3</code></td><td>3,589</td><td>55%</td><td>45%</td><td>0.99</td></tr>
+      </tbody>
+    </table>
+    <p><strong>4D codas are 99% a-type</strong> &mdash; pure monotonic deceleration, the simplest spectral shape. <strong>5R2 and 6-NOISE are 70%+ i-type</strong> &mdash; complex contours with inflection points. The most common type (1+1+3) is a nearly even split, suggesting it contains acoustically distinct subtypes.</p>
+  </div>
+
+  <div class="card">
+    <div class="card-header"><span class="card-title">a-type vs i-type: Functionally Different</span></div>
+    <p>The two contour families differ significantly on multiple dimensions:</p>
+    <table class="data-table" style="margin:1rem 0">
+      <thead><tr><th>Measure</th><th>a-type (n=4,781)</th><th>i-type (n=3,820)</th><th>p-value</th></tr></thead>
+      <tbody>
+        <tr><td>Mean clicks</td><td>5.2</td><td>5.4</td><td><strong>2.9 &times; 10<sup>&minus;35</sup></strong></td></tr>
+        <tr><td>Mean duration (s)</td><td>0.818</td><td>0.878</td><td><strong>1.4 &times; 10<sup>&minus;10</sup></strong></td></tr>
+        <tr><td>EC2 clan share</td><td>9.9%</td><td>12.2%</td><td>&mdash;</td></tr>
+      </tbody>
+    </table>
+    <p>i-type codas are significantly longer and have more clicks. The EC2 clan uses proportionally more i-type codas (12.2% vs 9.9%), hinting at a dialect dimension in contour preference.</p>
+  </div>
+
+  <div class="card">
+    <div class="card-header"><span class="card-title">Contour Adds 1.38 Bits Beyond CodaType</span></div>
+    <p>The key information-theoretic result:</p>
+    <table class="data-table" style="margin:1rem 0">
+      <thead><tr><th>Measure</th><th>Bits</th></tr></thead>
+      <tbody>
+        <tr><td>H(CodaType)</td><td>3.269</td></tr>
+        <tr><td>H(contour)</td><td>1.926</td></tr>
+        <tr><td>H(contour | CodaType)</td><td><strong>1.384</strong></td></tr>
+        <tr><td>MI(CodaType; contour)</td><td>0.541</td></tr>
+      </tbody>
+    </table>
+    <p><strong>Even after knowing the CodaType, the contour shape carries 1.384 additional bits.</strong> This means the ICI contour encodes information that the expert click-pattern labeling system doesn't capture &mdash; consistent with Begus et al.'s finding that vowel-like formants add a dimension beyond the traditional rhythm/tempo classification.</p>
+    <p>The mutual information (0.541 bits) shows CodaType and contour are correlated but far from redundant. Together they give 4.653 bits of joint entropy &mdash; a substantially richer signal space than either alone.</p>
+  </div>
+
+  <div class="card">
+    <div class="card-header"><span class="card-title">Contour Transition Patterns</span></div>
+    <p>Contour types show self-persistence in sequences, just like our Echo/Contrast dialogue modes:</p>
+    <table class="data-table" style="margin:1rem 0">
+      <thead><tr><th>From</th><th>Most likely next</th></tr></thead>
+      <tbody>
+        <tr><td>a-falling</td><td>a-falling <strong>61%</strong>, i-single 29%</td></tr>
+        <tr><td>i-single</td><td>i-single <strong>48%</strong>, a-falling 34%</td></tr>
+        <tr><td>a-rising</td><td>a-rising <strong>39%</strong>, i-single 28%</td></tr>
+        <tr><td>i-multi</td><td>i-single <strong>36%</strong>, a-falling 22%</td></tr>
+      </tbody>
+    </table>
+    <p>a-falling codas are the most persistent (61% self-transition) &mdash; once whales are in deceleration mode, they tend to stay there. The i-multi type is the least stable, flowing most often into simpler i-single. This mirrors the Echo/Contrast structure at a different level of description.</p>
+  </div>
+
+  <div class="card" style="border-left: 3px solid var(--accent);">
+    <div class="card-header"><span class="card-title">What This Means</span></div>
+    <p>The ICI contour shape is a <strong>fifth independent feature</strong> of sperm whale codas, beyond Sharma et al.'s four (rhythm, tempo, rubato, ornamentation). It adds 1.38 bits of information not captured by expert CodaType labels, maps cleanly onto the Begus a-coda/i-coda distinction, and shows significant functional differences between the two families.</p>
+    <p>With spectral features included, the total feature space expands from 4 to 5 dimensions, and the potential number of distinguishable coda types rises from 156 to <strong>~300+</strong>. This would push sperm whale vocabulary further ahead of any other non-human dialogic system.</p>
+    <p><strong>Limitation:</strong> These are <em>proxy</em> features derived from timing data. True spectral analysis requires the raw audio waveforms. Our contour classification approximates the formant distinction but cannot capture the full acoustic richness that Begus et al. measured with spectrograms.</p>
   </div>
 </div>
 

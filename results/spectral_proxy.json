@@ -1,0 +1,26 @@
+{
+  "contour_distribution": {
+    "a-falling": 3622,
+    "i-single": 3150,
+    "a-rising": 839,
+    "i-multi": 670,
+    "a-flat": 320,
+    "short": 118
+  },
+  "entropy": {
+    "H_CodaType": 3.269,
+    "H_contour": 1.926,
+    "H_contour_given_CodaType": 1.384,
+    "MI": 0.541
+  },
+  "a_vs_i": {
+    "a_count": 4781,
+    "i_count": 3820,
+    "a_mean_clicks": 5.2,
+    "i_mean_clicks": 5.4,
+    "a_mean_duration": 0.818,
+    "i_mean_duration": 0.878,
+    "duration_p": 1.4317366010014262e-10,
+    "clicks_p": 2.8508175593150043e-35
+  }
+}
